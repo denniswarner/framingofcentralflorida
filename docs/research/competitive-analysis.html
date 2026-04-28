@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Competitive Analysis — Framing Websites</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body { font-family: 'Georgia', serif; }
+    .card { transition: transform 0.2s ease, box-shadow 0.2s ease; }
+    .card:hover { transform: translateY(-4px); box-shadow: 0 20px 40px rgba(0,0,0,0.12); }
+    .screenshot-wrap { position: relative; overflow: hidden; height: 200px; background: #f3f0eb; }
+    .screenshot-wrap img { width: 100%; height: 100%; object-fit: cover; object-position: top; transition: transform 0.4s ease; }
+    .card:hover .screenshot-wrap img { transform: scale(1.03); }
+    .filter-btn { transition: all 0.15s ease; }
+    .filter-btn.active { background-color: #1a1a1a; color: #fff; }
+    .hidden-card { display: none; }
+    .award-badge {
+      background: linear-gradient(135deg, #c8a96e, #e8c87a);
+      color: #3a2a0a;
+    }
+    .screenshot-placeholder {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      height: 100%;
+      background: #ede8e0;
+      color: #999;
+      font-size: 0.75rem;
+      font-family: sans-serif;
+    }
+  </style>
+</head>
+<body class="bg-stone-50 text-stone-800 min-h-screen">
+
+  <!-- Header -->
+  <header class="border-b border-stone-200 bg-white sticky top-0 z-10">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+      <div>
+        <p class="text-xs uppercase tracking-widest text-stone-400 font-sans mb-0.5">Central Florida Framing — Redesign Research</p>
+        <h1 class="text-2xl font-bold tracking-tight text-stone-900">Competitive Analysis</h1>
+      </div>
+      <div class="text-right">
+        <p class="text-xs text-stone-400 font-sans">10 sites reviewed</p>
+        <p class="text-xs text-stone-400 font-sans">April 2026</p>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-7xl mx-auto px-6 py-10">
+
+    <!-- Intro -->
+    <div class="mb-10 max-w-2xl">
+      <p class="text-stone-500 font-sans leading-relaxed text-sm">
+        A curated review of the framing and art gallery landscape — covering direct competitors, local shop peers, and award-winning art/gallery sites for design inspiration. Each card includes design observations and a specific takeaway for the FOFC redesign.
+      </p>
+    </div>
+
+    <!-- Legend -->
+    <div class="flex flex-wrap gap-3 mb-6 font-sans text-xs">
+      <div class="flex items-center gap-1.5">
+        <span class="inline-block w-3 h-3 rounded-full bg-amber-500"></span>
+        <span class="text-stone-500">Awwwards / CSS Design Award</span>
+      </div>
+      <div class="flex items-center gap-1.5">
+        <span class="inline-block w-3 h-3 rounded-full bg-blue-500"></span>
+        <span class="text-stone-500">Framing — National</span>
+      </div>
+      <div class="flex items-center gap-1.5">
+        <span class="inline-block w-3 h-3 rounded-full bg-emerald-500"></span>
+        <span class="text-stone-500">Framing — Local</span>
+      </div>
+      <div class="flex items-center gap-1.5">
+        <span class="inline-block w-3 h-3 rounded-full bg-purple-500"></span>
+        <span class="text-stone-500">Art & Gallery — Design Inspiration</span>
+      </div>
+    </div>
+
+    <!-- Filter Tabs -->
+    <div class="flex flex-wrap gap-2 mb-8 font-sans" id="filters">
+      <button class="filter-btn active px-4 py-1.5 rounded-full border border-stone-300 text-sm" data-filter="all">All (10)</button>
+      <button class="filter-btn px-4 py-1.5 rounded-full border border-stone-300 text-sm bg-white" data-filter="national">Framing — National</button>
+      <button class="filter-btn px-4 py-1.5 rounded-full border border-stone-300 text-sm bg-white" data-filter="local">Framing — Local</button>
+      <button class="filter-btn px-4 py-1.5 rounded-full border border-stone-300 text-sm bg-white" data-filter="gallery">Art & Gallery</button>
+    </div>
+
+    <!-- Cards Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6" id="card-grid">
+
+      <!-- ===== CARD 1: Framebridge ===== -->
+      <div class="card bg-white rounded-2xl border border-stone-200 overflow-hidden" data-category="national">
+        <div class="screenshot-wrap">
+          <img
+            src="https://image.thum.io/get/width/700/crop/500/https://www.framebridge.com"
+            alt="Framebridge screenshot"
+            onerror="this.parentElement.innerHTML='<div class=\'screenshot-placeholder\'>Screenshot unavailable</div>'"
+          />
+        </div>
+        <div class="p-5">
+          <div class="flex flex-wrap gap-2 mb-3">
+            <span class="award-badge text-xs font-semibold font-sans px-2.5 py-0.5 rounded-full">🏆 Awwwards Honorable Mention</span>
+            <span class="text-xs font-semibold font-sans px-2.5 py-0.5 rounded-full bg-blue-100 text-blue-700">Framing — National</span>
+          </div>
+          <h2 class="text-lg font-bold text-stone-900 mb-0.5">Framebridge</h2>
+          <a href="https://www.framebridge.com" target="_blank" rel="noopener" class="text-xs text-stone-400 hover:text-stone-600 font-sans transition-colors">framebridge.com ↗</a>
+          <hr class="my-3 border-stone-100" />
+          <ul class="space-y-1.5 mb-4 font-sans text-sm text-stone-600">
+            <li class="flex gap-2"><span class="text-emerald-500 mt-0.5 shrink-0">✓</span>Warm cream palette (#FFF9F4) creates approachable, gallery-like feel</li>
+            <li class="flex gap-2"><span class="text-emerald-500 mt-0.5 shrink-0">✓</span>Shoppable gallery walls with hover hotspots — converts inspiration to purchase</li>
+            <li class="flex gap-2"><span class="text-emerald-500 mt-0.5 shrink-0">✓</span>Interactive pricing guide embedded inline, not on a separate page</li>
+            <li class="flex gap-2"><span class="text-emerald-500 mt-0.5 shrink-0">✓</span>Storytelling scroll sections explain the material/craft story</li>
+          </ul>
+          <hr class="my-3 border-stone-100" />
+          <p class="text-xs font-sans text-stone-500"><span class="font-semibold text-stone-700">FOFC Takeaway:</span> Use a warm off-white base color (not pure white) and lead with craftsmanship storytelling. A "how it's made" scroll section would elevate trust.</p>
+        </div>
+      </div>
+
+      <!-- ===== CARD 2: Level Frames ===== -->
+      <div class="card bg-white rounded-2xl border border-stone-200 overflow-hidden" data-category="national">
+        <div class="screenshot-wrap">
+          <img
+            src="https://image.thum.io/get/width/700/crop/500/https://www.levelframes.com"
+            alt="Level Frames screenshot"
+            onerror="this.parentElement.innerHTML='<div class=\'screenshot-placeholder\'>Screenshot unavailable</div>'"
+          />
+        </div>
+        <div class="p-5">
+          <div class="flex flex-wrap gap-2 mb-3">
+            <span class="award-badge text-xs font-semibold font-sans px-2.5 py-0.5 rounded-full">🏆 Wirecutter #1 — 2024, 2025, 2026</span>
+            <span class="text-xs font-semibold font-sans px-2.5 py-0.5 rounded-full bg-blue-100 text-blue-700">Framing — National</span>
+          </div>
+          <h2 class="text-lg font-bold text-stone-900 mb-0.5">Level Frames</h2>
+          <a href="https://www.levelframes.com" target="_blank" rel="noopener" class="text-xs text-stone-400 hover:text-stone-600 font-sans transition-colors">levelframes.com ↗</a>
+          <hr class="my-3 border-stone-100" />
+          <ul class="space-y-1.5 mb-4 font-sans text-sm text-stone-600">
+            <li class="flex gap-2"><span class="text-emerald-500 mt-0.5 shrink-0">✓</span>Frame configurator embedded directly on homepage — no friction to start</li>
+            <li class="flex gap-2"><span class="text-emerald-500 mt-0.5 shrink-0">✓</span>Curated selection philosophy (25 styles) reduces decision paralysis</li>
+            <li class="flex gap-2"><span class="text-emerald-500 mt-0.5 shrink-0">✓</span>Third-party credibility (Wirecutter, Buzzfeed, Strategist) in hero</li>
+            <li class="flex gap-2"><span class="text-emerald-500 mt-0.5 shrink-0">✓</span>Clean sans-serif type, large whitespace — feels premium without being cold</li>
+          </ul>
+          <hr class="my-3 border-stone-100" />
+          <p class="text-xs font-sans text-stone-500"><span class="font-semibold text-stone-700">FOFC Takeaway:</span> Feature any press mentions, local awards, or Google review count prominently in the hero. Social proof close to the CTA dramatically increases conversions.</p>
+        </div>
+      </div>
+
+      <!-- ===== CARD 3: Simply Framed ===== -->
+      <div class="card bg-white rounded-2xl border border-stone-200 overflow-hidden" data-category="national">
+        <div class="screenshot-wrap">
+          <img
+            src="https://image.thum.io/get/width/700/crop/500/https://www.simplyframed.com"
+            alt="Simply Framed screenshot"
+            onerror="this.parentElement.innerHTML='<div class=\'screenshot-placeholder\'>Screenshot unavailable</div>'"
+          />
+        </div>
+        <div class="p-5">
+          <div class="flex flex-wrap gap-2 mb-3">
+            <span class="text-xs font-semibold font-sans px-2.5 py-0.5 rounded-full bg-blue-100 text-blue-700">Framing — National</span>
+          </div>
+          <h2 class="text-lg font-bold text-stone-900 mb-0.5">Simply Framed</h2>
+          <a href="https://www.simplyframed.com" target="_blank" rel="noopener" class="text-xs text-stone-400 hover:text-stone-600 font-sans transition-colors">simplyframed.com ↗</a>
+          <hr class="my-3 border-stone-100" />
+          <ul class="space-y-1.5 mb-4 font-sans text-sm text-stone-600">
+            <li class="flex gap-2"><span class="text-emerald-500 mt-0.5 shrink-0">✓</span>Artist-first brand voice — "Your art deserves the perfect frame"</li>
+            <li class="flex gap-2"><span class="text-emerald-500 mt-0.5 shrink-0">✓</span>Editorial lifestyle photography (art hung in real homes, not studio shots)</li>
+            <li class="flex gap-2"><span class="text-emerald-500 mt-0.5 shrink-0">✓</span>Premium price positioning — higher price point shown as a quality signal</li>
+            <li class="flex gap-2"><span class="text-emerald-500 mt-0.5 shrink-0">✓</span>Minimal navigation — 4 items max, no overwhelming dropdown menus</li>
+          </ul>
+          <hr class="my-3 border-stone-100" />
+          <p class="text-xs font-sans text-stone-500"><span class="font-semibold text-stone-700">FOFC Takeaway:</span> Show art hanging in real Orlando homes/offices when possible. Context photography ("framed in a home") is far more compelling than isolated product shots.</p>
+        </div>
+      </div>
+
+      <!-- ===== CARD 4: Ray Street Custom Framing ===== -->
+      <div class="card bg-white rounded-2xl border border-stone-200 overflow-hidden" data-category="local">
+        <div class="screenshot-wrap">
+          <img
+            src="https://image.thum.io/get/width/700/crop/500/https://www.raystreetcustomframing.com"
+            alt="Ray Street Custom Framing screenshot"
+            onerror="this.parentElement.innerHTML='<div class=\'screenshot-placeholder\'>Screenshot unavailable</div>'"
+          />
+        </div>
+        <div class="p-5">
+          <div class="flex flex-wrap gap-2 mb-3">
+            <span class="text-xs font-semibold font-sans px-2.5 py-0.5 rounded-full bg-emerald-100 text-emerald-700">Framing — Local</span>
+          </div>
+          <h2 class="text-lg font-bold text-stone-900 mb-0.5">Ray Street Custom Framing</h2>
+          <a href="https://www.raystreetcustomframing.com" target="_blank" rel="noopener" class="text-xs text-stone-400 hover:text-stone-600 font-sans transition-colors">raystreetcustomframing.com ↗</a>
+          <hr class="my-3 border-stone-100" />
+          <ul class="space-y-1.5 mb-4 font-sans text-sm text-stone-600">
+            <li class="flex gap-2"><span class="text-emerald-500 mt-0.5 shrink-0">✓</span>Recently redesigned — feels current, boutique, and high-end</li>
+            <li class="flex gap-2"><span class="text-emerald-500 mt-0.5 shrink-0">✓</span>Live Instagram feed embedded on homepage — shows active, ongoing work</li>
+            <li class="flex gap-2"><span class="text-emerald-500 mt-0.5 shrink-0">✓</span>Custom logo redesign anchors the brand identity throughout</li>
+            <li class="flex gap-2"><span class="text-emerald-500 mt-0.5 shrink-0">✓</span>Email opt-in integrated into contact form for ongoing customer communication</li>
+          </ul>
+          <hr class="my-3 border-stone-100" />
+          <p class="text-xs font-sans text-stone-500"><span class="font-semibold text-stone-700">FOFC Takeaway:</span> The closest peer in size and model. Instagram integration is low-cost and high-impact for a shop with 104 gallery photos — most directly comparable strategy.</p>
+        </div>
+      </div>
+
+      <!-- ===== CARD 5: Bellingham FrameWorks ===== -->
+      <div class="card bg-white rounded-2xl border border-stone-200 overflow-hidden" data-category="local">
+        <div class="screenshot-wrap">
+          <img
+            src="https://image.thum.io/get/width/700/crop/500/https://www.bellinghamframeworks.com"
+            alt="Bellingham FrameWorks screenshot"
+            onerror="this.parentElement.innerHTML='<div class=\'screenshot-placeholder\'>Screenshot unavailable</div>'"
+          />
+        </div>
+        <div class="p-5">
+          <div class="flex flex-wrap gap-2 mb-3">
+            <span class="text-xs font-semibold font-sans px-2.5 py-0.5 rounded-full bg-emerald-100 text-emerald-700">Framing — Local</span>
+          </div>
+          <h2 class="text-lg font-bold text-stone-900 mb-0.5">Bellingham FrameWorks</h2>
+          <a href="https://www.bellinghamframeworks.com" target="_blank" rel="noopener" class="text-xs text-stone-400 hover:text-stone-600 font-sans transition-colors">bellinghamframeworks.com ↗</a>
+          <hr class="my-3 border-stone-100" />
+          <ul class="space-y-1.5 mb-4 font-sans text-sm text-stone-600">
+            <li class="flex gap-2"><span class="text-emerald-500 mt-0.5 shrink-0">✓</span>"Local. Experts. Guaranteed." — a three-word hero that does all the heavy lifting</li>
+            <li class="flex gap-2"><span class="text-emerald-500 mt-0.5 shrink-0">✓</span>Explicit satisfaction guarantee with clear terms builds instant trust</li>
+            <li class="flex gap-2"><span class="text-emerald-500 mt-0.5 shrink-0">✓</span>Community ties highlighted (co-sponsor of local arts org) — local credibility</li>
+            <li class="flex gap-2"><span class="text-emerald-500 mt-0.5 shrink-0">✓</span>Services listed as a simple scannable block — no jargon, no friction</li>
+          </ul>
+          <hr class="my-3 border-stone-100" />
+          <p class="text-xs font-sans text-stone-500"><span class="font-semibold text-stone-700">FOFC Takeaway:</span> FOFC's 20-year history IS the guarantee. A simple "Trusted by Orlando for 20 Years" hero headline + a satisfaction guarantee statement would immediately differentiate from chain stores.</p>
+        </div>
+      </div>
+
+      <!-- ===== CARD 6: Larson-Juhl ===== -->
+      <div class="card bg-white rounded-2xl border border-stone-200 overflow-hidden" data-category="local">
+        <div class="screenshot-wrap">
+          <img
+            src="https://image.thum.io/get/width/700/crop/500/https://www.larsonjuhl.com"
+            alt="Larson-Juhl screenshot"
+            onerror="this.parentElement.innerHTML='<div class=\'screenshot-placeholder\'>Screenshot unavailable</div>'"
+          />
+        </div>
+        <div class="p-5">
+          <div class="flex flex-wrap gap-2 mb-3">
+            <span class="text-xs font-semibold font-sans px-2.5 py-0.5 rounded-full bg-emerald-100 text-emerald-700">Framing — Local</span>
+          </div>
+          <h2 class="text-lg font-bold text-stone-900 mb-0.5">Larson-Juhl</h2>
+          <a href="https://www.larsonjuhl.com" target="_blank" rel="noopener" class="text-xs text-stone-400 hover:text-stone-600 font-sans transition-colors">larsonjuhl.com ↗</a>
+          <hr class="my-3 border-stone-100" />
+          <ul class="space-y-1.5 mb-4 font-sans text-sm text-stone-600">
+            <li class="flex gap-2"><span class="text-emerald-500 mt-0.5 shrink-0">✓</span>World's largest moulding supplier — editorial product photography sets high bar</li>
+            <li class="flex gap-2"><span class="text-emerald-500 mt-0.5 shrink-0">✓</span>Rich material close-ups and texture shots communicate quality without words</li>
+            <li class="flex gap-2"><span class="text-emerald-500 mt-0.5 shrink-0">✓</span>Trade/professional focus — demonstrates what the industry considers premium</li>
+            <li class="flex gap-2"><span class="text-emerald-500 mt-0.5 shrink-0">✓</span>Collection-based browsing by style (classic, modern, rustic) aids decision-making</li>
+          </ul>
+          <hr class="my-3 border-stone-100" />
+          <p class="text-xs font-sans text-stone-500"><span class="font-semibold text-stone-700">FOFC Takeaway:</span> Close-up photography of frame materials, corner samples, and mat textures would communicate craft quality far better than wide product shots. Worth photographing the actual materials used.</p>
+        </div>
+      </div>
+
+      <!-- ===== CARD 7: Milwaukee Art Museum ===== -->
+      <div class="card bg-white rounded-2xl border border-stone-200 overflow-hidden" data-category="gallery">
+        <div class="screenshot-wrap">
+          <img
+            src="https://image.thum.io/get/width/700/crop/500/https://mam.org"
+            alt="Milwaukee Art Museum screenshot"
+            onerror="this.parentElement.innerHTML='<div class=\'screenshot-placeholder\'>Screenshot unavailable</div>'"
+          />
+        </div>
+        <div class="p-5">
+          <div class="flex flex-wrap gap-2 mb-3">
+            <span class="award-badge text-xs font-semibold font-sans px-2.5 py-0.5 rounded-full">🏆 Awwwards Honorable Mention — Nov 2024</span>
+            <span class="text-xs font-semibold font-sans px-2.5 py-0.5 rounded-full bg-purple-100 text-purple-700">Art & Gallery</span>
+          </div>
+          <h2 class="text-lg font-bold text-stone-900 mb-0.5">Milwaukee Art Museum</h2>
+          <a href="https://mam.org" target="_blank" rel="noopener" class="text-xs text-stone-400 hover:text-stone-600 font-sans transition-colors">mam.org ↗</a>
+          <hr class="my-3 border-stone-100" />
+          <ul class="space-y-1.5 mb-4 font-sans text-sm text-stone-600">
+            <li class="flex gap-2"><span class="text-emerald-500 mt-0.5 shrink-0">✓</span>Pure black/white palette creates dramatic, gallery-quality atmosphere</li>
+            <li class="flex gap-2"><span class="text-emerald-500 mt-0.5 shrink-0">✓</span>Full-bleed hero video with silent autoplay — immediate immersion</li>
+            <li class="flex gap-2"><span class="text-emerald-500 mt-0.5 shrink-0">✓</span>Bold oversized typography — headlines function as design elements</li>
+            <li class="flex gap-2"><span class="text-emerald-500 mt-0.5 shrink-0">✓</span>Smooth section transitions that feel curated, not just scrolled</li>
+          </ul>
+          <hr class="my-3 border-stone-100" />
+          <p class="text-xs font-sans text-stone-500"><span class="font-semibold text-stone-700">FOFC Takeaway:</span> The fullPage.js hero section for FOFC could use a slideshow of gallery work as the background with overlaid bold typography — steal this "art as atmosphere" approach directly.</p>
+        </div>
+      </div>
+
+      <!-- ===== CARD 8: National Gallery of Art ===== -->
+      <div class="card bg-white rounded-2xl border border-stone-200 overflow-hidden" data-category="gallery">
+        <div class="screenshot-wrap">
+          <img
+            src="https://image.thum.io/get/width/700/crop/500/https://www.nga.gov"
+            alt="National Gallery of Art screenshot"
+            onerror="this.parentElement.innerHTML='<div class=\'screenshot-placeholder\'>Screenshot unavailable</div>'"
+          />
+        </div>
+        <div class="p-5">
+          <div class="flex flex-wrap gap-2 mb-3">
+            <span class="award-badge text-xs font-semibold font-sans px-2.5 py-0.5 rounded-full">🏆 Awwwards Honorable Mention — Aug 2025</span>
+            <span class="text-xs font-semibold font-sans px-2.5 py-0.5 rounded-full bg-purple-100 text-purple-700">Art & Gallery</span>
+          </div>
+          <h2 class="text-lg font-bold text-stone-900 mb-0.5">National Gallery of Art</h2>
+          <a href="https://www.nga.gov" target="_blank" rel="noopener" class="text-xs text-stone-400 hover:text-stone-600 font-sans transition-colors">nga.gov ↗</a>
+          <hr class="my-3 border-stone-100" />
+          <ul class="space-y-1.5 mb-4 font-sans text-sm text-stone-600">
+            <li class="flex gap-2"><span class="text-emerald-500 mt-0.5 shrink-0">✓</span>Interactive scroll-based article layouts — content reveals as you move</li>
+            <li class="flex gap-2"><span class="text-emerald-500 mt-0.5 shrink-0">✓</span>"ArtVibes" interaction — artwork reacts to user cursor movement</li>
+            <li class="flex gap-2"><span class="text-emerald-500 mt-0.5 shrink-0">✓</span>Accent color palette (indigo + amber) used sparingly for maximum impact</li>
+            <li class="flex gap-2"><span class="text-emerald-500 mt-0.5 shrink-0">✓</span>Innovative UI that makes a 200-year-old institution feel forward-thinking</li>
+          </ul>
+          <hr class="my-3 border-stone-100" />
+          <p class="text-xs font-sans text-stone-500"><span class="font-semibold text-stone-700">FOFC Takeaway:</span> A subtle parallax or hover effect on the gallery section images would make FOFC's 104 photos feel like an exhibition, not just a grid. Even a 2-color accent palette goes a long way.</p>
+        </div>
+      </div>
+
+      <!-- ===== CARD 9: Crystal Bridges Museum ===== -->
+      <div class="card bg-white rounded-2xl border border-stone-200 overflow-hidden" data-category="gallery">
+        <div class="screenshot-wrap">
+          <img
+            src="https://image.thum.io/get/width/700/crop/500/https://crystalbridges.org"
+            alt="Crystal Bridges Museum screenshot"
+            onerror="this.parentElement.innerHTML='<div class=\'screenshot-placeholder\'>Screenshot unavailable</div>'"
+          />
+        </div>
+        <div class="p-5">
+          <div class="flex flex-wrap gap-2 mb-3">
+            <span class="award-badge text-xs font-semibold font-sans px-2.5 py-0.5 rounded-full">🏆 Awwwards Nominee — Feb 2025</span>
+            <span class="text-xs font-semibold font-sans px-2.5 py-0.5 rounded-full bg-purple-100 text-purple-700">Art & Gallery</span>
+          </div>
+          <h2 class="text-lg font-bold text-stone-900 mb-0.5">Crystal Bridges Museum</h2>
+          <a href="https://crystalbridges.org" target="_blank" rel="noopener" class="text-xs text-stone-400 hover:text-stone-600 font-sans transition-colors">crystalbridges.org ↗</a>
+          <hr class="my-3 border-stone-100" />
+          <ul class="space-y-1.5 mb-4 font-sans text-sm text-stone-600">
+            <li class="flex gap-2"><span class="text-emerald-500 mt-0.5 shrink-0">✓</span>Photography-first design — every section anchored by a full-bleed image</li>
+            <li class="flex gap-2"><span class="text-emerald-500 mt-0.5 shrink-0">✓</span>Clean responsive layout that works equally well on mobile and desktop</li>
+            <li class="flex gap-2"><span class="text-emerald-500 mt-0.5 shrink-0">✓</span>Content hierarchy is crystal clear — one CTA per section, no competition</li>
+            <li class="flex gap-2"><span class="text-emerald-500 mt-0.5 shrink-0">✓</span>Natural color palette (warm greens, neutrals) mirrors the physical environment</li>
+          </ul>
+          <hr class="my-3 border-stone-100" />
+          <p class="text-xs font-sans text-stone-500"><span class="font-semibold text-stone-700">FOFC Takeaway:</span> One CTA per fullPage.js section — never compete with yourself. Each section of the FOFC site should have a single, clear next action (See Gallery / Get a Quote / Call Us).</p>
+        </div>
+      </div>
+
+      <!-- ===== CARD 10: Peter Paul Rubens Gallery ===== -->
+      <div class="card bg-white rounded-2xl border border-stone-200 overflow-hidden" data-category="gallery">
+        <div class="screenshot-wrap">
+          <img
+            src="https://image.thum.io/get/width/700/crop/500/https://sabina-art-gallery.webflow.io"
+            alt="Peter Paul Rubens Art Gallery screenshot"
+            onerror="this.parentElement.innerHTML='<div class=\'screenshot-placeholder\'>Screenshot unavailable</div>'"
+          />
+        </div>
+        <div class="p-5">
+          <div class="flex flex-wrap gap-2 mb-3">
+            <span class="award-badge text-xs font-semibold font-sans px-2.5 py-0.5 rounded-full">🏆 Awwwards Nominee — Apr 2025</span>
+            <span class="text-xs font-semibold font-sans px-2.5 py-0.5 rounded-full bg-purple-100 text-purple-700">Art & Gallery</span>
+          </div>
+          <h2 class="text-lg font-bold text-stone-900 mb-0.5">Peter Paul Rubens Gallery</h2>
+          <a href="https://sabina-art-gallery.webflow.io" target="_blank" rel="noopener" class="text-xs text-stone-400 hover:text-stone-600 font-sans transition-colors">sabina-art-gallery.webflow.io ↗</a>
+          <hr class="my-3 border-stone-100" />
+          <ul class="space-y-1.5 mb-4 font-sans text-sm text-stone-600">
+            <li class="flex gap-2"><span class="text-emerald-500 mt-0.5 shrink-0">✓</span>GSAP animations make classical art feel dynamic and alive</li>
+            <li class="flex gap-2"><span class="text-emerald-500 mt-0.5 shrink-0">✓</span>Horizontal artwork slider — alternative to vertical scroll for galleries</li>
+            <li class="flex gap-2"><span class="text-emerald-500 mt-0.5 shrink-0">✓</span>Fullscreen menu overlay keeps nav from distracting from the art</li>
+            <li class="flex gap-2"><span class="text-emerald-500 mt-0.5 shrink-0">✓</span>Classical subject + modern interaction = premium, memorable experience</li>
+          </ul>
+          <hr class="my-3 border-stone-100" />
+          <p class="text-xs font-sans text-stone-500"><span class="font-semibold text-stone-700">FOFC Takeaway:</span> The fullPage.js horizontal slide feature (bidirectional scroll) is perfect for a Services section — each slide can be a service type with its own image. Steal this layout pattern directly.</p>
+        </div>
+      </div>
+
+    </div><!-- /card-grid -->
+
+    <!-- Summary Callout -->
+    <div class="mt-14 bg-stone-900 text-stone-100 rounded-2xl p-8 font-sans">
+      <h2 class="text-xl font-bold mb-2 font-serif">Key Themes for the FOFC Redesign</h2>
+      <p class="text-stone-400 text-sm mb-6">Patterns observed across all 10 sites that should directly inform design decisions.</p>
+      <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 text-sm">
+        <div>
+          <h3 class="font-semibold text-amber-400 mb-1">Warm Palette Over Clinical White</h3>
+          <p class="text-stone-400">The best framing sites (Framebridge, Simply Framed) use warm off-whites and creams — not pure #FFFFFF. It mirrors the warmth of a physical frame shop.</p>
+        </div>
+        <div>
+          <h3 class="font-semibold text-amber-400 mb-1">Photography Does the Selling</h3>
+          <p class="text-stone-400">Every high-performing site leads with full-bleed, high-quality imagery of real work in real spaces. FOFC has 104 photos — this is a major asset to deploy.</p>
+        </div>
+        <div>
+          <h3 class="font-semibold text-amber-400 mb-1">Longevity = Trust Signal</h3>
+          <p class="text-stone-400">"20 Years" should appear above the fold, not buried in an About page. It is the single most powerful differentiator from newer or chain competitors.</p>
+        </div>
+        <div>
+          <h3 class="font-semibold text-amber-400 mb-1">One CTA Per Section</h3>
+          <p class="text-stone-400">Award-winning sites (Crystal Bridges, NGA) never compete with themselves. fullPage.js sections should each have one clear action: See Gallery / Get a Quote / Visit Us.</p>
+        </div>
+        <div>
+          <h3 class="font-semibold text-amber-400 mb-1">Minimal Navigation</h3>
+          <p class="text-stone-400">Top-performing sites cap navigation at 4–5 items and use hamburger menus on scroll. fullPage.js's built-in dot navigation handles this elegantly.</p>
+        </div>
+        <div>
+          <h3 class="font-semibold text-amber-400 mb-1">Satisfaction Guarantee Front & Center</h3>
+          <p class="text-stone-400">Bellingham FrameWorks and Framebridge both surface their guarantee in the hero. A simple guarantee statement on FOFC would immediately build trust for first-time visitors.</p>
+        </div>
+      </div>
+    </div>
+
+    <p class="text-center text-xs text-stone-400 font-sans mt-8 mb-4">
+      Central Florida Framing — Redesign Research &nbsp;|&nbsp; April 2026 &nbsp;|&nbsp; Screenshots via thum.io
+    </p>
+
+  </main>
+
+  <script>
+    // Filter functionality
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const cards = document.querySelectorAll('#card-grid > div');
+
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        filterBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        const filter = btn.dataset.filter;
+        cards.forEach(card => {
+          if (filter === 'all' || card.dataset.category === filter) {
+            card.style.display = 'block';
+          } else {
+            card.style.display = 'none';
+          }
+        });
+      });
+    });
+  </script>
+</body>
+</html>
