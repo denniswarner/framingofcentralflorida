@@ -18,10 +18,7 @@ export default function HomePage() {
             photography, memorabilia, and more. Every piece tells a story — let
             us help you display yours.
           </p>
-          <div className="mt-8 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
-            <Button size="lg" render={<Link href="/contact" />}>
-              Get a Free Consultation
-            </Button>
+          <div className="mt-8 flex justify-center">
             <Button variant="outline" size="lg" render={<Link href="/gallery" />}>
               View Our Work
             </Button>
@@ -59,10 +56,20 @@ export default function HomePage() {
 
       {/* At a glance */}
       <section className="border-t bg-muted/40">
-        <div className="container mx-auto px-4 py-16">
-          <p className="text-center font-heading text-2xl italic text-muted-foreground">
-            &ldquo;From Memories to Masterpieces&rdquo;
-          </p>
+        <div className="container mx-auto px-4 py-20">
+          <div className="flex flex-col items-center gap-6 text-center">
+            <span
+              aria-hidden
+              className="block h-px w-16 bg-foreground/30"
+            />
+            <p className="font-heading text-3xl italic leading-tight tracking-tight text-foreground sm:text-4xl">
+              &ldquo;From Memories to Masterpieces&rdquo;
+            </p>
+            <span
+              aria-hidden
+              className="block h-px w-16 bg-foreground/30"
+            />
+          </div>
 
           <div className="mx-auto mt-12 grid max-w-5xl gap-8 sm:grid-cols-2 lg:grid-cols-3">
             <div className="space-y-2 text-center">
@@ -101,6 +108,25 @@ export default function HomePage() {
                 {tag}
               </span>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Closing CTA */}
+      <section className="bg-secondary text-secondary-foreground">
+        <div className="container mx-auto px-4 py-20 text-center">
+          <h2 className="font-heading text-3xl font-bold tracking-tight sm:text-4xl">
+            Come in for a free consultation.
+          </h2>
+          <p className="mt-4 text-base text-secondary-foreground/80">
+            1820 N. Orange Ave &middot; Orlando, FL 32804
+            <br />
+            Mon&ndash;Fri 10 AM&ndash;5 PM &middot; Sat 10 AM&ndash;3 PM
+          </p>
+          <div className="mt-8">
+            <Button size="lg" render={<Link href="/contact" />}>
+              Visit Our Shop
+            </Button>
           </div>
         </div>
       </section>

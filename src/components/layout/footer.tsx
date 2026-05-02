@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { Facebook, Instagram } from "iconoir-react";
 
 const navLinks = [
   { href: "/", label: "Home" },
@@ -6,6 +7,19 @@ const navLinks = [
   { href: "/framing-styles", label: "Framing Styles" },
   { href: "/gallery", label: "Gallery" },
   { href: "/contact", label: "Contact Us" },
+] as const;
+
+const socialLinks = [
+  {
+    href: "https://www.facebook.com/",
+    label: "Facebook",
+    Icon: Facebook,
+  },
+  {
+    href: "https://www.instagram.com/",
+    label: "Instagram",
+    Icon: Instagram,
+  },
 ] as const;
 
 export function Footer() {
@@ -62,9 +76,26 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="mt-10 border-t pt-6 text-center text-sm text-muted-foreground">
-          &copy; {new Date().getFullYear()} Framing of Central Florida. All
-          rights reserved.
+        <div className="mt-10 flex flex-col items-center gap-4 border-t pt-6 sm:flex-row sm:justify-between">
+          <p className="text-sm text-muted-foreground">
+            &copy; {new Date().getFullYear()} Framing of Central Florida. All
+            rights reserved.
+          </p>
+          <ul className="flex items-center gap-4">
+            {socialLinks.map(({ href, label, Icon }) => (
+              <li key={label}>
+                <a
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={label}
+                  className="text-muted-foreground transition-colors hover:text-foreground"
+                >
+                  <Icon width={20} height={20} />
+                </a>
+              </li>
+            ))}
+          </ul>
         </div>
       </div>
     </footer>

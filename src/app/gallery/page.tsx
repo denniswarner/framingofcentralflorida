@@ -1,16 +1,12 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
+import { GalleryClient } from "@/components/gallery/gallery-client";
 
 export const metadata: Metadata = {
   title: "Gallery",
   description:
-    "Browse our gallery of custom framing work — over 100 examples of framed art, photography, memorabilia, and more.",
+    "Browse our gallery of custom framing work — memorabilia, jerseys, diplomas, fine art, and more.",
 };
-
-// Placeholder for the 104 gallery images
-const galleryItems = Array.from({ length: 12 }, (_, i) => ({
-  id: i + 1,
-  alt: `Framing example ${i + 1}`,
-}));
 
 export default function GalleryPage() {
   return (
@@ -21,25 +17,13 @@ export default function GalleryPage() {
             Gallery
           </h1>
           <p className="text-lg text-muted-foreground">
-            See examples of our custom framing work. From family portraits to
-            sports memorabilia, every piece gets the attention it deserves.
+            See examples of our custom framing work. Filter by category to
+            explore memorabilia, jerseys, diplomas, and fine art.
           </p>
         </div>
-        <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
-          {galleryItems.map((item) => (
-            <div
-              key={item.id}
-              className="group relative aspect-square overflow-hidden rounded-lg border bg-muted"
-            >
-              <div className="flex h-full items-center justify-center text-sm text-muted-foreground">
-                {item.alt}
-              </div>
-            </div>
-          ))}
-        </div>
-        <p className="text-center text-sm text-muted-foreground">
-          Showing 12 of 104 examples. Full gallery coming soon.
-        </p>
+        <Suspense fallback={null}>
+          <GalleryClient />
+        </Suspense>
       </div>
     </main>
   );
