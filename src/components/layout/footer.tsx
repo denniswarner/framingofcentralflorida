@@ -11,12 +11,12 @@ const navLinks = [
 
 const socialLinks = [
   {
-    href: "https://www.facebook.com/",
+    href: "https://www.facebook.com/people/Framing-of-Central-Florida/61587577614285/",
     label: "Facebook",
     Icon: Facebook,
   },
   {
-    href: "https://www.instagram.com/",
+    href: "https://www.instagram.com/framingofcentral/",
     label: "Instagram",
     Icon: Instagram,
   },
@@ -33,9 +33,16 @@ export function Footer() {
               Framing of Central Florida
             </h3>
             <address className="text-sm not-italic text-muted-foreground leading-relaxed">
-              1820 N. Orange Ave
-              <br />
-              Orlando, FL 32804
+              <a
+                href="https://www.google.com/maps/search/?api=1&query=Framing+of+Central+Florida%2C+1820+N+Orange+Ave%2C+Orlando%2C+FL+32804"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-foreground"
+              >
+                1820 N. Orange Ave
+                <br />
+                Orlando, FL 32804
+              </a>
               <br />
               <a href="tel:+14078948644" className="hover:text-foreground">
                 (407) 894-8644
@@ -79,7 +86,8 @@ export function Footer() {
         <div className="mt-10 flex flex-col items-center gap-4 border-t pt-6 sm:flex-row sm:justify-between">
           <p className="text-sm text-muted-foreground">
             &copy; {new Date().getFullYear()} Framing of Central Florida. All
-            rights reserved.
+            rights reserved.{" "}
+            <span className="ml-1 text-muted-foreground/70">v0.2</span>
           </p>
           <ul className="flex items-center gap-4">
             {socialLinks.map(({ href, label, Icon }) => (

@@ -1,5 +1,6 @@
 export const CATEGORIES = [
   "Fine Art",
+  "Stretched Canvas",
   "Memorabilia",
   "Jersey",
   "Diplomas",
@@ -27,4 +28,6 @@ export const galleryItems: GalleryItem[] = [
   { id: "10", title: "Watercolor Landscape", categories: ["Fine Art"] },
   { id: "11", title: "Limited Edition Print", categories: ["Fine Art"] },
   { id: "12", title: "Family Portrait", categories: ["Fine Art"] },
+  { id: "13", title: "Stretched Canvas Print", categories: ["Stretched Canvas", "Fine Art"] },
+  { id: "14", title: "Gallery Wrap Photograph", categories: ["Stretched Canvas"] },
 ];

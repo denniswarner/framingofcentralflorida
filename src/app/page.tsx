@@ -48,6 +48,11 @@ export default function HomePage() {
             it&apos;s a family heirloom or a contemporary print, we treat every
             piece as if it were our own.
           </p>
+          <p className="font-heading text-base italic text-foreground sm:text-lg">
+            We only use archival-quality materials and UV-protective glass
+            <br />
+            to preserve your valuable artwork.
+          </p>
           <Button variant="link" render={<Link href="/about" />}>
             Learn more about our story &rarr;
           </Button>

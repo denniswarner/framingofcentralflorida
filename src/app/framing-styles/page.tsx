@@ -39,11 +39,6 @@ const framingStyles = [
     description:
       "Professional stretching and framing for canvas prints and original paintings.",
   },
-  {
-    title: "Conservation Framing",
-    description:
-      "Archival-quality materials and UV-protective glass to preserve valuable artwork.",
-  },
 ];
 
 export default function FramingStylesPage() {
