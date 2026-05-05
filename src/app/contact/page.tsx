@@ -84,9 +84,16 @@ export default function ContactPage() {
               </CardHeader>
               <CardContent className="space-y-4">
                 <address className="text-sm not-italic text-muted-foreground leading-relaxed">
-                  1820 N. Orange Ave
-                  <br />
-                  Orlando, FL 32804
+                  <a
+                    href="https://www.google.com/maps/search/?api=1&query=Framing+of+Central+Florida%2C+1820+N+Orange+Ave%2C+Orlando%2C+FL+32804"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hover:text-foreground"
+                  >
+                    1820 N. Orange Ave
+                    <br />
+                    Orlando, FL 32804
+                  </a>
                 </address>
                 <p className="text-sm text-muted-foreground">
                   <strong className="text-foreground">Phone:</strong>{" "}
@@ -112,6 +119,17 @@ export default function ContactPage() {
                   <br />
                   Sunday: Closed
                 </p>
+                <Button
+                  render={
+                    <a
+                      href="https://www.google.com/maps/search/?api=1&query=Framing+of+Central+Florida%2C+1820+N+Orange+Ave%2C+Orlando%2C+FL+32804"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    />
+                  }
+                >
+                  Get Directions
+                </Button>
               </CardContent>
             </Card>
 

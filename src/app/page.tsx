@@ -129,7 +129,16 @@ export default function HomePage() {
             Mon&ndash;Fri 10 AM&ndash;5 PM &middot; Sat 10 AM&ndash;3 PM
           </p>
           <div className="mt-8">
-            <Button size="lg" render={<Link href="/contact" />}>
+            <Button
+              size="lg"
+              render={
+                <a
+                  href="https://www.google.com/maps/search/?api=1&query=Framing+of+Central+Florida%2C+1820+N+Orange+Ave%2C+Orlando%2C+FL+32804"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                />
+              }
+            >
               Visit Our Shop
             </Button>
           </div>

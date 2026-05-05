@@ -29,6 +29,13 @@ Snap-scrolling homepage with right-side nav dots, full-bleed sections for hero /
 
 ---
 
+## 3. AI-assisted newsletter (feature + business process)
+**Status**: Sketched. See `prd-newsletter.md` for the full PRD.
+
+Monthly newsletter drafted by AI from internal shop activity + curated external web sources (RSS, news APIs), then reviewed and lightly edited by Ray before send. Human-in-the-loop is required — full automation hurts a boutique brand. Phase 0 (subscribe form on the site) may slot in before launch; AI drafting and external ingestion are post-launch.
+
+---
+
 ## How to add to this list
 - One feature per section, with: status, summary, approach options, where it goes, open items.
 - If a feature grows past ~one screen of detail, promote it to its own `prd-<name>.md` and leave a one-line pointer here.
