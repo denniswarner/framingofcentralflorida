@@ -21,39 +21,54 @@ export default function SandboxIndexPage() {
         </header>
 
         <ul className="grid gap-6 sm:grid-cols-2">
-          <li className="rounded-lg border bg-background p-6 transition-colors hover:border-foreground">
-            <Link href="/sandbox/prairie" className="block space-y-3">
-              <span className="text-xs uppercase tracking-widest text-muted-foreground">
-                Variant A
-              </span>
-              <h2 className="font-heading text-2xl font-bold">Prairie</h2>
-              <p className="text-sm text-muted-foreground leading-relaxed">
-                Frank Lloyd Wright–leaning. Marcellus headings, horizontal
-                rhythm, geometric Prairie-window mark, double-hairline
-                framing borders. Calm, grounded, architectural.
-              </p>
-              <span className="inline-block text-sm font-medium underline-offset-4 hover:underline">
-                View variant →
-              </span>
-            </Link>
-          </li>
-
-          <li className="rounded-lg border bg-background p-6 transition-colors hover:border-foreground">
-            <Link href="/sandbox/sullivan" className="block space-y-3">
-              <span className="text-xs uppercase tracking-widest text-muted-foreground">
-                Variant B
-              </span>
-              <h2 className="font-heading text-2xl font-bold">Sullivan</h2>
-              <p className="text-sm text-muted-foreground leading-relaxed">
-                Louis Sullivan–leaning. Cormorant Garamond display,
-                ornamental band motif, vertical proportions, decorative
-                rules. Refined, intricate, slightly Art Nouveau.
-              </p>
-              <span className="inline-block text-sm font-medium underline-offset-4 hover:underline">
-                View variant →
-              </span>
-            </Link>
-          </li>
+          {[
+            {
+              href: "/sandbox/prairie",
+              tag: "Variant A",
+              title: "Prairie",
+              description:
+                "Frank Lloyd Wright–leaning. Marcellus headings, horizontal rhythm, geometric Prairie-window mark, double-hairline framing borders. Calm, grounded, architectural.",
+            },
+            {
+              href: "/sandbox/sullivan",
+              tag: "Variant B",
+              title: "Sullivan",
+              description:
+                "Louis Sullivan–leaning. Cormorant Garamond display, ornamental band motif, vertical proportions, decorative rules. Refined, intricate, slightly Art Nouveau.",
+            },
+            {
+              href: "/sandbox/postmodern",
+              tag: "Variant C",
+              title: "Post-Modern",
+              description:
+                "Venturi / Memphis–leaning. Fraunces display with italic emphasis, color blocks, geometric shape ornament, oversized headlines. Playful, asymmetric, deliberately distinctive.",
+            },
+            {
+              href: "/sandbox/art-deco",
+              tag: "Variant D",
+              title: "Art Deco",
+              description:
+                "Cinzel display, vertical proportions, sunburst mark, chevron bands, frame-within-frame borders. Cream + black + antique gold. Period-rich, gallery-luxurious.",
+            },
+          ].map(({ href, tag, title, description }) => (
+            <li
+              key={href}
+              className="rounded-lg border bg-background p-6 transition-colors hover:border-foreground"
+            >
+              <Link href={href} className="block space-y-3">
+                <span className="text-xs uppercase tracking-widest text-muted-foreground">
+                  {tag}
+                </span>
+                <h2 className="font-heading text-2xl font-bold">{title}</h2>
+                <p className="text-sm text-muted-foreground leading-relaxed">
+                  {description}
+                </p>
+                <span className="inline-block text-sm font-medium underline-offset-4 hover:underline">
+                  View variant →
+                </span>
+              </Link>
+            </li>
+          ))}
         </ul>
 
         <section className="space-y-3 border-t pt-8 text-sm text-muted-foreground">

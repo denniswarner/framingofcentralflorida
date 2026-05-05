@@ -18,7 +18,7 @@ export default function SandboxLayout({
           <span>
             Sandbox · prototype review · not indexed
           </span>
-          <nav className="flex items-center gap-4">
+          <nav className="flex flex-wrap items-center gap-4">
             <Link href="/sandbox" className="hover:text-foreground">
               Index
             </Link>
@@ -33,6 +33,18 @@ export default function SandboxLayout({
               className="hover:text-foreground"
             >
               Sullivan
+            </Link>
+            <Link
+              href="/sandbox/postmodern"
+              className="hover:text-foreground"
+            >
+              Post-Modern
+            </Link>
+            <Link
+              href="/sandbox/art-deco"
+              className="hover:text-foreground"
+            >
+              Art Deco
             </Link>
             <Link href="/" className="hover:text-foreground">
               ← Live site
