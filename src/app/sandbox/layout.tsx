@@ -46,6 +46,30 @@ export default function SandboxLayout({
             >
               Art Deco
             </Link>
+            <Link
+              href="/sandbox/japanese"
+              className="hover:text-foreground"
+            >
+              Japanese
+            </Link>
+            <Link
+              href="/sandbox/de-stijl"
+              className="hover:text-foreground"
+            >
+              De Stijl
+            </Link>
+            <Link
+              href="/sandbox/letterpress"
+              className="hover:text-foreground"
+            >
+              Letterpress
+            </Link>
+            <Link
+              href="/sandbox/gehry"
+              className="hover:text-foreground"
+            >
+              Gehry
+            </Link>
             <Link href="/" className="hover:text-foreground">
               ← Live site
             </Link>

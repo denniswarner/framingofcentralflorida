@@ -20,7 +20,7 @@ export default function SandboxIndexPage() {
           </p>
         </header>
 
-        <ul className="grid gap-6 sm:grid-cols-2">
+        <ul className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {[
             {
               href: "/sandbox/prairie",
@@ -49,6 +49,34 @@ export default function SandboxIndexPage() {
               title: "Art Deco",
               description:
                 "Cinzel display, vertical proportions, sunburst mark, chevron bands, frame-within-frame borders. Cream + black + antique gold. Period-rich, gallery-luxurious.",
+            },
+            {
+              href: "/sandbox/japanese",
+              tag: "Variant E",
+              title: "Japanese Minimalism",
+              description:
+                "Wabi-sabi-leaning. Noto Serif Display, vast whitespace, asymmetric balance, single enso brushstroke mark, indigo accent on washi-paper cream. Quiet, archival, restrained.",
+            },
+            {
+              href: "/sandbox/de-stijl",
+              tag: "Variant F",
+              title: "De Stijl",
+              description:
+                "Mondrian / Rietveld. Pure rectangles, thick black grid lines, primary red / yellow / blue color blocks. Jost geometric sans. Rectangles within rectangles — literally a frame shop's vocabulary.",
+            },
+            {
+              href: "/sandbox/letterpress",
+              tag: "Variant G",
+              title: "Letterpress",
+              description:
+                "Heritage craft. Playfair Display + Crimson Text, drop caps, fleurons, ornamental rules, double-line borders, ink-red accent on kraft cream. Reads as \"this place has been here for decades.\"",
+            },
+            {
+              href: "/sandbox/gehry",
+              tag: "Wild card",
+              title: "Gehry / Deconstructivist",
+              description:
+                "Sculptural and fragmented. Space Grotesk display, tilted overlapping panels, angular clipped buttons, bronze + brushed graphite palette. Bold and distinctive — risky for a craft brand, included as a contrast pole.",
             },
           ].map(({ href, tag, title, description }) => (
             <li
