@@ -1,11 +1,5 @@
 import type { Metadata } from "next";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { DecoChevronBand } from "@/components/deco/ornaments";
 
 export const metadata: Metadata = {
   title: "Framing Styles",
@@ -43,31 +37,39 @@ const framingStyles = [
 
 export default function FramingStylesPage() {
   return (
-    <main className="container mx-auto px-4 py-16">
-      <div className="mx-auto max-w-5xl space-y-8">
-        <div className="max-w-2xl space-y-4">
-          <h1 className="font-heading text-4xl font-bold tracking-tight">
-            Framing Styles
+    <main className="container mx-auto px-4 py-16 lg:py-24">
+      <div className="mx-auto max-w-5xl space-y-12">
+        <div className="mx-auto max-w-2xl space-y-6 text-center">
+          <p className="text-[0.65rem] uppercase tracking-[0.5em] text-accent-deep">
+            Our Craft
+          </p>
+          <h1 className="font-heading text-4xl font-semibold tracking-[0.06em] sm:text-5xl">
+            FRAMING STYLES
           </h1>
-          <p className="text-lg text-muted-foreground">
+          <div className="flex justify-center">
+            <DecoChevronBand className="h-3 w-32 text-accent" />
+          </div>
+          <p className="text-lg leading-relaxed text-muted-foreground">
             Whatever your vision, we have a framing style to match. Browse our
             options below or visit us for a personalized consultation.
           </p>
         </div>
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {framingStyles.map((style) => (
-            <Card key={style.title}>
-              <CardHeader>
-                <div className="mb-2 h-32 rounded-md bg-muted" />
-                <CardTitle>{style.title}</CardTitle>
-                <CardDescription>{style.description}</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <p className="text-sm text-muted-foreground">
+            <div key={style.title} className="border border-accent p-2">
+              <div className="flex h-full flex-col border border-accent p-6 text-center">
+                <div className="mb-5 h-32 bg-muted" />
+                <h2 className="font-heading text-lg font-medium tracking-[0.1em]">
+                  {style.title.toUpperCase()}
+                </h2>
+                <p className="mt-3 flex-1 text-base leading-relaxed text-muted-foreground">
+                  {style.description}
+                </p>
+                <p className="mt-4 text-[0.6rem] uppercase tracking-[0.3em] text-muted-foreground">
                   [Sample images to be added]
                 </p>
-              </CardContent>
-            </Card>
+              </div>
+            </div>
           ))}
         </div>
       </div>

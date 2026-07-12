@@ -11,7 +11,7 @@
   --color-nectarine: var(--color-nectarine);
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-sans), Georgia, ui-serif, serif;
   --font-mono: ui-monospace, monospace;
   --font-heading: var(--font-heading), ui-serif, Georgia, serif;
   --color-sidebar-ring: var(--sidebar-ring);
@@ -33,6 +33,7 @@
   --color-destructive: var(--destructive);
   --color-accent-foreground: var(--accent-foreground);
   --color-accent: var(--accent);
+  --color-accent-deep: var(--accent-deep);
   --color-muted-foreground: var(--muted-foreground);
   --color-muted: var(--muted);
   --color-secondary-foreground: var(--secondary-foreground);
@@ -53,39 +54,40 @@
 }
 
 :root {
-  /* Brand palette — see docs/style-guide.md */
+  /* Legacy brand palette — kept for reference, see docs/style-guide.md */
   --color-onyx: #0A171D;
   --color-wheat: #FFF6E9;
   --color-oceanic: #003F47;
   --color-nectarine: #FFBD76;
 
-  /* Wireframe mode — neutral grayscale.
-     Brand colors above are kept for later; semantic tokens are grayscale
-     so the live site reads as a wireframe while we focus on layout. */
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.145 0 0);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.205 0 0);
-  --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.97 0 0);
-  --secondary-foreground: oklch(0.205 0 0);
-  --muted: oklch(0.97 0 0);
-  --muted-foreground: oklch(0.556 0 0);
-  --accent: oklch(0.97 0 0);
-  --accent-foreground: oklch(0.205 0 0);
+  /* Art Deco theme — promoted from /sandbox/art-deco (client-approved).
+     Cream + near-black + antique gold. */
+  --background: #F4ECD8;
+  --foreground: #0C0B08;
+  --card: #FAF3E1;
+  --card-foreground: #0C0B08;
+  --popover: #FAF3E1;
+  --popover-foreground: #0C0B08;
+  --primary: #0C0B08;
+  --primary-foreground: #F4ECD8;
+  --secondary: #0C0B08;
+  --secondary-foreground: #F4ECD8;
+  --muted: #E9DEC0;
+  --muted-foreground: #5A4F36;
+  --accent: #B89456;
+  --accent-foreground: #0C0B08;
+  --accent-deep: #8B6B3A;
   --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.922 0 0);
-  --input: oklch(0.922 0 0);
-  --ring: oklch(0.708 0 0);
+  --border: #B89456;
+  --input: #B89456;
+  --ring: #B89456;
   --chart-1: oklch(0.87 0 0);
   --chart-2: oklch(0.556 0 0);
   --chart-3: oklch(0.439 0 0);
   --chart-4: oklch(0.371 0 0);
   --chart-5: oklch(0.269 0 0);
-  --radius: 0.625rem;
+  /* Art Deco is rectilinear — no rounded corners */
+  --radius: 0rem;
   --sidebar: oklch(0.985 0 0);
   --sidebar-foreground: oklch(0.145 0 0);
   --sidebar-primary: oklch(0.205 0 0);

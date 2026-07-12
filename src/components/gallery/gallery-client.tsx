@@ -50,7 +50,7 @@ export function GalleryClient() {
       </div>
 
       {filtered.length === 0 ? (
-        <p className="rounded-lg border border-dashed py-16 text-center text-sm text-muted-foreground">
+        <p className="border border-dashed border-accent py-16 text-center text-sm text-muted-foreground">
           No items in this category yet.
         </p>
       ) : (
@@ -58,9 +58,9 @@ export function GalleryClient() {
           {filtered.map((item) => (
             <div
               key={item.id}
-              className="group relative aspect-square overflow-hidden rounded-lg border bg-muted"
+              className="group relative aspect-square overflow-hidden border border-accent bg-muted p-1.5"
             >
-              <div className="flex h-full items-center justify-center px-3 text-center text-sm text-muted-foreground">
+              <div className="flex h-full items-center justify-center border border-accent/60 px-3 text-center text-sm text-muted-foreground">
                 {item.title}
               </div>
             </div>
@@ -68,10 +68,10 @@ export function GalleryClient() {
         </div>
       )}
 
-      <p className="text-center text-sm text-muted-foreground">
+      <p className="text-center text-[0.65rem] uppercase tracking-[0.3em] text-muted-foreground">
         Showing {filtered.length}{" "}
         {filtered.length === 1 ? "example" : "examples"}
-        {active ? ` in ${active}` : ""}.
+        {active ? ` in ${active}` : ""}
       </p>
     </div>
   );
@@ -92,10 +92,10 @@ function FilterPill({
       onClick={onClick}
       aria-pressed={isActive}
       className={cn(
-        "rounded-full border px-4 py-1.5 text-sm transition-colors",
+        "border px-4 py-1.5 text-[0.65rem] uppercase tracking-[0.25em] transition-colors",
         isActive
-          ? "border-secondary bg-secondary text-secondary-foreground"
-          : "border-border bg-background text-muted-foreground hover:border-foreground hover:text-foreground",
+          ? "border-accent bg-primary text-primary-foreground"
+          : "border-accent bg-background text-muted-foreground hover:text-foreground",
       )}
     >
       {label}

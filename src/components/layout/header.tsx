@@ -12,6 +12,7 @@ import {
   SheetTrigger,
   SheetClose,
 } from "@/components/ui/sheet";
+import { DecoChevronBand } from "@/components/deco/ornaments";
 import { cn } from "@/lib/utils";
 
 const navLinks = [
@@ -26,23 +27,30 @@ export function Header() {
   const pathname = usePathname();
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <div className="container mx-auto flex h-16 items-center justify-between px-4">
-        <Link href="/" className="font-heading text-xl font-bold tracking-tight">
-          Framing of Central Florida
+    <header className="sticky top-0 z-50 w-full border-b border-accent bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/90">
+      <div className="container relative mx-auto flex flex-col items-center gap-3 px-4 py-6 text-center">
+        <DecoChevronBand className="h-3 w-40 text-accent" />
+        <Link
+          href="/"
+          className="font-heading text-xl font-semibold tracking-[0.18em] sm:text-2xl"
+        >
+          FRAMING OF CENTRAL FLORIDA
         </Link>
+        <span className="text-[0.65rem] uppercase tracking-[0.5em] text-accent-deep">
+          Established 1993 · Orlando
+        </span>
 
         {/* Desktop nav */}
-        <nav className="hidden md:flex md:items-center md:gap-1">
+        <nav className="mt-2 hidden flex-wrap items-center justify-center gap-7 md:flex">
           {navLinks.map((link) => (
             <Link
               key={link.href}
               href={link.href}
               className={cn(
-                "rounded-lg px-3 py-2 text-sm font-medium transition-colors hover:bg-muted",
+                "text-xs uppercase tracking-[0.35em] transition-colors",
                 pathname === link.href
-                  ? "bg-muted text-foreground"
-                  : "text-muted-foreground"
+                  ? "text-accent-deep underline underline-offset-8"
+                  : "text-foreground hover:text-accent-deep",
               )}
             >
               {link.label}
@@ -54,15 +62,21 @@ export function Header() {
         <Sheet>
           <SheetTrigger
             render={
-              <Button variant="ghost" size="icon" className="md:hidden" />
+              <Button
+                variant="ghost"
+                size="icon"
+                className="absolute right-4 top-6 md:hidden"
+              />
             }
           >
             <MenuIcon className="size-5" />
             <span className="sr-only">Toggle menu</span>
           </SheetTrigger>
-          <SheetContent side="right" className="w-72">
+          <SheetContent side="right" className="w-72 border-accent bg-background">
             <SheetHeader>
-              <SheetTitle>Menu</SheetTitle>
+              <SheetTitle className="font-heading tracking-[0.2em]">
+                MENU
+              </SheetTitle>
             </SheetHeader>
             <nav className="flex flex-col gap-1 px-4">
               {navLinks.map((link) => (
@@ -70,10 +84,10 @@ export function Header() {
                   <Link
                     href={link.href}
                     className={cn(
-                      "rounded-lg px-3 py-2 text-sm font-medium transition-colors hover:bg-muted",
+                      "px-3 py-3 text-xs uppercase tracking-[0.3em] transition-colors",
                       pathname === link.href
-                        ? "bg-muted text-foreground"
-                        : "text-muted-foreground"
+                        ? "text-accent-deep"
+                        : "text-foreground hover:text-accent-deep",
                     )}
                   >
                     {link.label}
