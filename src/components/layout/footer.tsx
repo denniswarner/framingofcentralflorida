@@ -1,6 +1,6 @@
 import Link from "next/link";
-import { Facebook, Instagram } from "iconoir-react";
 import { DecoChevronBand } from "@/components/deco/ornaments";
+import { socialLinks } from "@/data/social-links";
 
 const navLinks = [
   { href: "/", label: "Home" },
@@ -8,19 +8,6 @@ const navLinks = [
   { href: "/framing-styles", label: "Framing Styles" },
   { href: "/gallery", label: "Gallery" },
   { href: "/contact", label: "Contact Us" },
-] as const;
-
-const socialLinks = [
-  {
-    href: "https://www.facebook.com/people/Framing-of-Central-Florida/61587577614285/",
-    label: "Facebook",
-    Icon: Facebook,
-  },
-  {
-    href: "https://www.instagram.com/framingofcentral/",
-    label: "Instagram",
-    Icon: Instagram,
-  },
 ] as const;
 
 export function Footer() {

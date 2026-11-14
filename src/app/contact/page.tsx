@@ -3,6 +3,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { DecoChevronBand } from "@/components/deco/ornaments";
+import { socialLinks } from "@/data/social-links";
 
 export const metadata: Metadata = {
   title: "Contact Us",
@@ -43,6 +44,12 @@ export default function ContactPage() {
               <p className="mt-2 text-base text-muted-foreground">
                 Fill out the form below and we&apos;ll respond within one
                 business day.
+              </p>
+              <p className="mt-4 border-l border-accent pl-4 text-base italic leading-relaxed text-muted-foreground">
+                Because every frame we build is designed and fitted by hand, we
+                don&apos;t take orders online. Every project starts with an
+                in-person consultation at our shop, and we&apos;re happy to
+                answer questions here before you visit.
               </p>
               <form className="mt-8 space-y-4">
                 <div className="grid gap-4 sm:grid-cols-2">
@@ -134,6 +141,26 @@ export default function ContactPage() {
                     <br />
                     Sunday: Closed
                   </p>
+                  <div className="text-base text-muted-foreground">
+                    <strong className="font-medium text-foreground">
+                      Follow:
+                    </strong>
+                    <ul className="mt-2 flex flex-wrap items-center gap-x-6 gap-y-2">
+                      {socialLinks.map(({ href, label, Icon }) => (
+                        <li key={label}>
+                          <a
+                            href={href}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center gap-2 transition-colors hover:text-foreground"
+                          >
+                            <Icon width={18} height={18} />
+                            {label}
+                          </a>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
                   <a
                     href={MAPS_URL}
                     target="_blank"

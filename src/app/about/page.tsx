@@ -28,6 +28,15 @@ export default function WhoWeArePage() {
           combines traditional craftsmanship with modern techniques to preserve
           and display what matters most to you.
         </p>
+        <p className="text-lg leading-relaxed">
+          Custom framing is hands-on work. Choosing the right moulding, mat,
+          and glass means seeing your piece in person, holding samples against
+          it, and talking through where it will hang. Because that specialized,
+          personal approach is at the heart of what we do, we don&apos;t offer
+          online ordering. Every project begins with a free consultation at our
+          shop on North Orange Avenue: bring your piece in, and we&apos;ll
+          design its frame together.
+        </p>
         <div className="border border-accent p-3">
           <div className="border border-accent p-10 text-sm uppercase tracking-[0.3em] text-muted-foreground">
             [Team photo and detailed story content to be added]

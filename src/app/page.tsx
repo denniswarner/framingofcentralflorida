@@ -63,13 +63,15 @@ export default function HomePage() {
             Why us
           </p>
           <h2 className="font-heading text-3xl font-medium leading-tight tracking-[0.05em] sm:text-4xl">
-            FORM · STRUCTURE · PRESERVATION
+            PERSONALIZATION · CRAFTSMANSHIP · PRESERVATION
           </h2>
           <p className="text-lg leading-relaxed">
-            With decades of experience and a passion for preservation, we
-            combine traditional craftsmanship with modern techniques. Whether
-            it&apos;s a family heirloom or a contemporary print, we treat every
-            piece as if it were our own.
+            No two pieces are alike, so no two frames should be. We sit down
+            with you to choose the moulding, mats, and glass that suit your
+            piece and your space, then build it by hand in our shop with skills
+            refined over decades. Whether it&apos;s a family heirloom or a
+            contemporary print, we treat every piece as if it were our own, and
+            frame it to last for generations.
           </p>
           <div className="mx-auto inline-block border border-accent px-10 py-8">
             <p className="text-xl font-medium italic leading-snug">
@@ -95,9 +97,8 @@ export default function HomePage() {
       <section className="container mx-auto px-4 py-20">
         <div className="mx-auto max-w-5xl border border-accent p-3">
           <div className="border border-accent px-6 py-16 sm:px-12">
-            <p className="text-center font-heading text-3xl font-medium tracking-[0.04em] sm:text-4xl">
-              FROM MEMORIES <span className="text-accent">·</span> TO
-              MASTERPIECES
+            <p className="text-center text-4xl italic leading-tight sm:text-5xl">
+              From Memories to Masterpieces
             </p>
             <div className="mx-auto mt-12 grid max-w-4xl gap-0 sm:grid-cols-3">
               {[

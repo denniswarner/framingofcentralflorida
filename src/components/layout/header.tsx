@@ -13,6 +13,7 @@ import {
   SheetClose,
 } from "@/components/ui/sheet";
 import { DecoChevronBand } from "@/components/deco/ornaments";
+import { socialLinks } from "@/data/social-links";
 import { cn } from "@/lib/utils";
 
 const navLinks = [
@@ -36,9 +37,28 @@ export function Header() {
         >
           FRAMING OF CENTRAL FLORIDA
         </Link>
+        <p className="-mt-1 text-lg italic leading-none sm:text-xl">
+          From Memories to Masterpieces
+        </p>
         <span className="text-[0.65rem] uppercase tracking-[0.5em] text-accent-deep">
           Established 1993 · Orlando
         </span>
+
+        <ul className="absolute left-4 top-7 flex items-center gap-3 md:left-auto md:right-6">
+          {socialLinks.map(({ href, label, Icon }) => (
+            <li key={label}>
+              <a
+                href={href}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={label}
+                className="text-foreground/70 transition-colors hover:text-accent-deep"
+              >
+                <Icon width={18} height={18} />
+              </a>
+            </li>
+          ))}
+        </ul>
 
         {/* Desktop nav */}
         <nav className="mt-2 hidden flex-wrap items-center justify-center gap-7 md:flex">
