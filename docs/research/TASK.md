@@ -14,6 +14,12 @@
 - [ ] 2026-11-13 - Photo of the business on the homepage: need storefront/team photography (site currently has no photos).
 - [ ] 2026-11-13 - Expanded About page: need the client's story, or an interview to draft it.
 
+## Time-sensitive steps for Ray (added 2026-11-14)
+- [ ] Before 2026-12-22: add a payment method to GoDaddy, or `framingofcentralflorida.com` may expire. (Details: Phase 1)
+- [ ] Change the GoDaddy login email to an address that doesn't depend on the old host, then change the password. Once DNS moves, `admin@framingofcentralflorida.com` stops getting mail, including GoDaddy's renewal notices. (Details: Phase 1)
+- [ ] Set up new business email (Google Workspace or Microsoft 365) before the domain is pointed at Vercel, so email doesn't go down. (Details: Phase 3)
+- [ ] At launch, point the domain to Vercel. Vercel provides the SSL certificate for free, so the "replacement certificate" in the previous company's email isn't needed. (Details: Phase 6)
+
 ## Launch playbook (added 2026-11-14)
 
 Dennis's checklist for guiding Ray from the old site to the new one. Hard deadline: `framingofcentralflorida.com` expires 2026-12-22. Who does each step is in brackets.
