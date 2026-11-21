@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Design Lab · Hero</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Source+Sans+3:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --ink: #1c1a17;
+      --muted: #6b6560;
+      --paper: #f7f4ef;
+      --panel: #ffffff;
+      --line: #e4ddd3;
+      --accent: #8a6a3d;
+      --accent-soft: #f0e6d6;
+      --ok: #2f5d3a;
+      --shadow: 0 12px 40px rgba(28, 26, 23, 0.08);
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Source Sans 3", system-ui, sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(1200px 600px at 10% -10%, #efe7d8 0%, transparent 55%),
+        radial-gradient(900px 500px at 100% 0%, #e8ece7 0%, transparent 50%),
+        var(--paper);
+      min-height: 100vh;
+    }
+
+    .shell {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 1.25rem 1.25rem 3rem;
+    }
+
+    header.bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem 1.25rem;
+      align-items: baseline;
+      justify-content: space-between;
+      margin-bottom: 1.25rem;
+    }
+
+    .eyebrow {
+      font-size: 0.75rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin: 0 0 0.2rem;
+    }
+
+    h1 {
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-weight: 600;
+      font-size: clamp(1.75rem, 3vw, 2.25rem);
+      margin: 0;
+      letter-spacing: -0.01em;
+    }
+
+    .hint {
+      color: var(--muted);
+      font-size: 0.95rem;
+      max-width: 28rem;
+      margin: 0;
+      line-height: 1.45;
+    }
+
+    .picker {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      margin: 1rem 0 1.25rem;
+    }
+
+    .picker button {
+      appearance: none;
+      border: 1px solid var(--line);
+      background: var(--panel);
+      color: var(--ink);
+      font: inherit;
+      font-weight: 500;
+      padding: 0.55rem 0.9rem;
+      border-radius: 999px;
+      cursor: pointer;
+      transition: border-color 0.15s, background 0.15s, color 0.15s;
+    }
+
+    .picker button[aria-pressed="true"] {
+      background: var(--ink);
+      border-color: var(--ink);
+      color: #fff;
+    }
+
+    .picker button:hover { border-color: var(--accent); }
+
+    .stage {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    /* --- Hero variants (preview only) --- */
+    .hero {
+      position: relative;
+      min-height: min(72vh, 620px);
+      display: grid;
+      align-items: end;
+      color: #fff;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background-size: cover;
+      background-position: center;
+    }
+
+    .hero-scrim {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(18,16,14,0.78) 0%, rgba(18,16,14,0.25) 45%, rgba(18,16,14,0.15) 100%);
+    }
+
+    .hero-copy {
+      position: relative;
+      z-index: 1;
+      padding: clamp(1.5rem, 4vw, 3rem);
+      max-width: 36rem;
+    }
+
+    .hero-brand {
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-size: clamp(2rem, 5vw, 3.25rem);
+      font-weight: 600;
+      line-height: 1.05;
+      margin: 0 0 0.65rem;
+    }
+
+    .hero-line {
+      margin: 0 0 1.25rem;
+      font-size: 1.05rem;
+      line-height: 1.5;
+      opacity: 0.92;
+      max-width: 28rem;
+    }
+
+    .cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: #fff;
+      color: var(--ink);
+      text-decoration: none;
+      font-weight: 600;
+      padding: 0.75rem 1.15rem;
+      border: none;
+      cursor: default;
+    }
+
+    /* Variant A: full-bleed classic */
+    [data-variant="a"] .hero-bg {
+      background-image:
+        linear-gradient(120deg, rgba(40,30,20,0.35), transparent),
+        url("https://images.unsplash.com/photo-1513519245088-0e12902e35a6?auto=format&fit=crop&w=1600&q=80");
+    }
+
+    /* Variant B: split — text left, image right (desktop) */
+    [data-variant="b"] .hero {
+      grid-template-columns: 1fr 1.1fr;
+      align-items: stretch;
+      color: var(--ink);
+      background: #f3efe8;
+    }
+    [data-variant="b"] .hero-bg {
+      position: relative;
+      min-height: 280px;
+      order: 2;
+      background-image: url("https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?auto=format&fit=crop&w=1400&q=80");
+    }
+    [data-variant="b"] .hero-scrim { display: none; }
+    [data-variant="b"] .hero-copy {
+      order: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: clamp(1.75rem, 5vw, 3.5rem);
+    }
+    [data-variant="b"] .cta {
+      background: var(--ink);
+      color: #fff;
+      align-self: start;
+    }
+    @media (max-width: 720px) {
+      [data-variant="b"] .hero { grid-template-columns: 1fr; }
+      [data-variant="b"] .hero-bg { order: 1; min-height: 240px; }
+      [data-variant="b"] .hero-copy { order: 2; }
+    }
+
+    /* Variant C: centered gallery */
+    [data-variant="c"] .hero {
+      align-items: center;
+      justify-items: center;
+      text-align: center;
+    }
+    [data-variant="c"] .hero-bg {
+      background-image:
+        url("https://images.unsplash.com/photo-1460661419201-fd4cecdf8a8b?auto=format&fit=crop&w=1600&q=80");
+      filter: saturate(0.85);
+    }
+    [data-variant="c"] .hero-scrim {
+      background: rgba(16, 14, 12, 0.55);
+    }
+    [data-variant="c"] .hero-copy {
+      max-width: 34rem;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    [data-variant="c"] .hero-line { margin-left: auto; margin-right: auto; }
+    [data-variant="c"] .cta {
+      background: transparent;
+      color: #fff;
+      border: 1px solid rgba(255,255,255,0.7);
+    }
+
+    .meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem 1.25rem;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.9rem 1.1rem;
+      border-top: 1px solid var(--line);
+      background: #faf8f5;
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+
+    .vote {
+      margin-top: 1.5rem;
+      background: var(--panel);
+      border: 1px solid var(--line);
+      padding: 1.25rem 1.35rem;
+      box-shadow: var(--shadow);
+    }
+
+    .vote h2 {
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-size: 1.45rem;
+      margin: 0 0 0.35rem;
+    }
+
+    .vote p {
+      margin: 0 0 1rem;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .choices {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.65rem;
+      margin-bottom: 1rem;
+    }
+    @media (max-width: 640px) {
+      .choices { grid-template-columns: 1fr; }
+    }
+
+    .choice {
+      border: 1px solid var(--line);
+      background: #fff;
+      padding: 0.85rem 1rem;
+      text-align: left;
+      cursor: pointer;
+      font: inherit;
+      border-radius: 2px;
+      transition: border-color 0.15s, background 0.15s;
+    }
+    .choice strong { display: block; margin-bottom: 0.15rem; }
+    .choice span { color: var(--muted); font-size: 0.85rem; }
+    .choice[aria-pressed="true"] {
+      border-color: var(--accent);
+      background: var(--accent-soft);
+    }
+
+    label {
+      display: block;
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-bottom: 0.35rem;
+    }
+
+    textarea {
+      width: 100%;
+      min-height: 88px;
+      resize: vertical;
+      font: inherit;
+      padding: 0.75rem;
+      border: 1px solid var(--line);
+      border-radius: 2px;
+      background: #fff;
+      margin-bottom: 0.9rem;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.65rem;
+      align-items: center;
+    }
+
+    .primary {
+      appearance: none;
+      border: none;
+      background: var(--ink);
+      color: #fff;
+      font: inherit;
+      font-weight: 600;
+      padding: 0.7rem 1.15rem;
+      cursor: pointer;
+    }
+    .primary:disabled { opacity: 0.45; cursor: not-allowed; }
+
+    .ghost {
+      appearance: none;
+      border: 1px solid var(--line);
+      background: transparent;
+      font: inherit;
+      padding: 0.65rem 1rem;
+      cursor: pointer;
+      color: var(--muted);
+    }
+
+    .status {
+      font-size: 0.9rem;
+      color: var(--ok);
+      min-height: 1.25em;
+    }
+
+    .linkout {
+      margin-top: 0.75rem;
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+    .linkout code {
+      font-size: 0.8rem;
+      background: var(--accent-soft);
+      padding: 0.15rem 0.4rem;
+      border-radius: 2px;
+    }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <header class="bar">
+      <div>
+        <p class="eyebrow">Design Lab · Framing of Central Florida</p>
+        <h1>Hero options</h1>
+      </div>
+      <p class="hint">Preview each layout, then pick the one you prefer. Nothing here changes the live website.</p>
+    </header>
+
+    <div class="picker" role="tablist" aria-label="Hero variants">
+      <button type="button" data-go="a" aria-pressed="true">A · Full-bleed</button>
+      <button type="button" data-go="b" aria-pressed="false">B · Split</button>
+      <button type="button" data-go="c" aria-pressed="false">C · Centered</button>
+    </div>
+
+    <div class="stage" id="stage" data-variant="a">
+      <section class="hero" aria-label="Hero preview">
+        <div class="hero-bg" aria-hidden="true"></div>
+        <div class="hero-scrim" aria-hidden="true"></div>
+        <div class="hero-copy">
+          <p class="hero-brand">Framing of Central Florida</p>
+          <p class="hero-line">Custom framing, conservation care, and gallery-ready finishes — crafted in Orlando.</p>
+          <span class="cta">Book a consultation</span>
+        </div>
+      </section>
+      <div class="meta">
+        <span id="variant-label">Viewing option A — Full-bleed image</span>
+        <span>Share this view: <strong id="share-path">?v=a</strong></span>
+      </div>
+    </div>
+
+    <section class="vote" aria-labelledby="vote-title">
+      <h2 id="vote-title">Your pick</h2>
+      <p>Choose one option. Optional notes help us refine copy or imagery before we build.</p>
+
+      <div class="choices" role="group" aria-label="Preferred hero">
+        <button type="button" class="choice" data-pick="a" aria-pressed="false">
+          <strong>Option A</strong>
+          <span>Full-bleed photo, brand over image</span>
+        </button>
+        <button type="button" class="choice" data-pick="b" aria-pressed="false">
+          <strong>Option B</strong>
+          <span>Split layout, text beside image</span>
+        </button>
+        <button type="button" class="choice" data-pick="c" aria-pressed="false">
+          <strong>Option C</strong>
+          <span>Centered gallery moment</span>
+        </button>
+      </div>
+
+      <label for="notes">Notes (optional)</label>
+      <textarea id="notes" placeholder="e.g. Prefer B, but use the darker frame photo from A…"></textarea>
+
+      <div class="actions">
+        <button type="button" class="primary" id="submit" disabled>Submit preference</button>
+        <button type="button" class="ghost" id="copy">Copy summary</button>
+        <span class="status" id="status" aria-live="polite"></span>
+      </div>
+      <p class="linkout">Prototype only — preference is stored in this browser via <code>localStorage</code>, not sent anywhere.</p>
+    </section>
+  </div>
+
+  <script>
+    const labels = {
+      a: "Viewing option A — Full-bleed image",
+      b: "Viewing option B — Split text / image",
+      c: "Viewing option C — Centered gallery"
+    };
+
+    const stage = document.getElementById("stage");
+    const variantLabel = document.getElementById("variant-label");
+    const sharePath = document.getElementById("share-path");
+    const submit = document.getElementById("submit");
+    const status = document.getElementById("status");
+    const notes = document.getElementById("notes");
+    let selected = null;
+
+    function setVariant(v) {
+      stage.dataset.variant = v;
+      variantLabel.textContent = labels[v];
+      sharePath.textContent = "?v=" + v;
+      document.querySelectorAll(".picker button").forEach((btn) => {
+        btn.setAttribute("aria-pressed", String(btn.dataset.go === v));
+      });
+      const url = new URL(window.location.href);
+      url.searchParams.set("v", v);
+      history.replaceState(null, "", url);
+    }
+
+    document.querySelectorAll(".picker button").forEach((btn) => {
+      btn.addEventListener("click", () => setVariant(btn.dataset.go));
+    });
+
+    document.querySelectorAll(".choice").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        selected = btn.dataset.pick;
+        document.querySelectorAll(".choice").forEach((c) => {
+          c.setAttribute("aria-pressed", String(c === btn));
+        });
+        submit.disabled = false;
+        setVariant(selected);
+        status.textContent = "";
+      });
+    });
+
+    function summary() {
+      return [
+        "Hero preference: " + (selected ? selected.toUpperCase() : "(none)"),
+        "Notes: " + (notes.value.trim() || "(none)"),
+        "Reviewed at: " + new Date().toLocaleString()
+      ].join("\n");
+    }
+
+    submit.addEventListener("click", () => {
+      localStorage.setItem("fcf-hero-lab", JSON.stringify({
+        pick: selected,
+        notes: notes.value.trim(),
+        at: new Date().toISOString()
+      }));
+      status.textContent = "Saved on this device. You can also copy the summary to email or chat.";
+    });
+
+    document.getElementById("copy").addEventListener("click", async () => {
+      if (!selected) {
+        status.textContent = "Pick an option first.";
+        return;
+      }
+      try {
+        await navigator.clipboard.writeText(summary());
+        status.textContent = "Summary copied — paste into email or Slack.";
+      } catch {
+        status.textContent = summary();
+      }
+    });
+
+    // Deep link: ?v=b
+    const initial = new URLSearchParams(location.search).get("v");
+    if (initial && labels[initial]) setVariant(initial);
+
+    // Restore prior pick if any
+    try {
+      const saved = JSON.parse(localStorage.getItem("fcf-hero-lab") || "null");
+      if (saved?.pick) {
+        selected = saved.pick;
+        document.querySelector(`.choice[data-pick="${saved.pick}"]`)
+          ?.setAttribute("aria-pressed", "true");
+        notes.value = saved.notes || "";
+        submit.disabled = false;
+      }
+    } catch (_) {}
+  </script>
+</body>
+</html>

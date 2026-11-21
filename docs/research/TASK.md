@@ -7,6 +7,7 @@
 - [x] 2026-11-13 - Client feedback: add the italic "From Memories to Masterpieces" slogan under the business name in the header (kept "Established 1993 · Orlando" below it), and restyle the homepage "At a glance" slogan to the same italic treatment. Loaded Cormorant Garamond's true italic in `layout.tsx`.
 - [x] 2026-11-13 - Client feedback: change "Form · Structure · Preservation" to "Personalization · Craftsmanship · Preservation" on the homepage and rewrite the supporting paragraph to cover all three words.
 - [x] 2026-11-13 - Client feedback: add softened "no online ordering, every project starts with an in-person consultation" copy to the Contact page (under the form intro) and the About page (full explanation).
+- [x] 2026-11-15 - Client feedback: make "Established 1993 · Orlando" in the header bigger so it stands out (`0.65rem` → `text-xs`, `sm:text-sm`, medium weight).
 - [x] 2026-11-14 - Reconnect the local folder (`/Volumes/Schmitty/dev-repos/framing-of-central-florida-app`) to GitHub and push the Nov 13 feedback on branch `client-feedback-2026-11-13` (preview: https://framingofcentralflorida-k81hya7r7-dennis-warners-projects.vercel.app).
 
 ## Open (blocked on client)

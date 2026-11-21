@@ -40,7 +40,7 @@ export function Header() {
         <p className="-mt-1 text-lg italic leading-none sm:text-xl">
           From Memories to Masterpieces
         </p>
-        <span className="text-[0.65rem] uppercase tracking-[0.5em] text-accent-deep">
+        <span className="text-xs font-medium uppercase tracking-[0.45em] text-accent-deep sm:text-sm">
           Established 1993 · Orlando
         </span>
 
