@@ -85,6 +85,12 @@ If everything is "primary," nothing is. Resist the urge to make "View Our Work" 
 
 ---
 
+## Typography
+
+- **Minimum font size: 14px** (`text-sm` / `0.875rem`) on the live site. `text-xs` is aligned to the same size in `globals.css`; do not use arbitrary sizes below 14px on production pages.
+
+---
+
 ## Accessibility (WCAG AA targets)
 
 | Combination | Contrast | Passes |

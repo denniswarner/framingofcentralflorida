@@ -68,7 +68,7 @@ export function GalleryClient() {
         </div>
       )}
 
-      <p className="text-center text-[0.65rem] uppercase tracking-[0.3em] text-muted-foreground">
+      <p className="text-center text-sm uppercase tracking-[0.3em] text-muted-foreground">
         Showing {filtered.length}{" "}
         {filtered.length === 1 ? "example" : "examples"}
         {active ? ` in ${active}` : ""}
@@ -92,7 +92,7 @@ function FilterPill({
       onClick={onClick}
       aria-pressed={isActive}
       className={cn(
-        "border px-4 py-1.5 text-[0.65rem] uppercase tracking-[0.25em] transition-colors",
+        "border px-4 py-1.5 text-sm uppercase tracking-[0.25em] transition-colors",
         isActive
           ? "border-accent bg-primary text-primary-foreground"
           : "border-accent bg-background text-muted-foreground hover:text-foreground",

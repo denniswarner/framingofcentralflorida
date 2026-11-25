@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { DecoChevronBand } from "@/components/deco/ornaments";
 
 export const metadata: Metadata = {
-  title: "Framing Styles",
+  title: "Styles",
   description:
     "Explore our custom framing styles — from traditional wood and ornate gold to modern minimalist and shadow box options.",
 };
@@ -28,11 +28,6 @@ const framingStyles = [
     description:
       "Deep frames for dimensional objects like jerseys, memorabilia, and keepsakes.",
   },
-  {
-    title: "Canvas Stretching",
-    description:
-      "Professional stretching and framing for canvas prints and original paintings.",
-  },
 ];
 
 export default function FramingStylesPage() {
@@ -40,11 +35,11 @@ export default function FramingStylesPage() {
     <main className="container mx-auto px-4 py-16 lg:py-24">
       <div className="mx-auto max-w-5xl space-y-12">
         <div className="mx-auto max-w-2xl space-y-6 text-center">
-          <p className="text-[0.65rem] uppercase tracking-[0.5em] text-accent-deep">
+          <p className="text-sm uppercase tracking-[0.5em] text-accent-deep">
             Our Craft
           </p>
           <h1 className="font-heading text-4xl font-semibold tracking-[0.06em] sm:text-5xl">
-            FRAMING STYLES
+            STYLES
           </h1>
           <div className="flex justify-center">
             <DecoChevronBand className="h-3 w-32 text-accent" />
@@ -65,7 +60,7 @@ export default function FramingStylesPage() {
                 <p className="mt-3 flex-1 text-base leading-relaxed text-muted-foreground">
                   {style.description}
                 </p>
-                <p className="mt-4 text-[0.6rem] uppercase tracking-[0.3em] text-muted-foreground">
+                <p className="mt-4 text-sm uppercase tracking-[0.3em] text-muted-foreground">
                   [Sample images to be added]
                 </p>
               </div>

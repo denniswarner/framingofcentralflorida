@@ -19,7 +19,7 @@ export default function ContactPage() {
     <main className="container mx-auto px-4 py-16 lg:py-24">
       <div className="mx-auto max-w-5xl space-y-12">
         <div className="mx-auto max-w-2xl space-y-6 text-center">
-          <p className="text-[0.65rem] uppercase tracking-[0.5em] text-accent-deep">
+          <p className="text-sm uppercase tracking-[0.5em] text-accent-deep">
             Get In Touch
           </p>
           <h1 className="font-heading text-4xl font-semibold tracking-[0.06em] sm:text-5xl">
@@ -80,7 +80,7 @@ export default function ContactPage() {
                 </div>
                 <button
                   type="submit"
-                  className="w-full border border-accent bg-primary px-9 py-4 font-heading text-xs font-semibold uppercase tracking-[0.3em] text-primary-foreground transition-opacity hover:opacity-90"
+                  className="w-full border border-accent bg-primary px-9 py-4 font-heading text-sm font-semibold uppercase tracking-[0.3em] text-primary-foreground transition-opacity hover:opacity-90"
                 >
                   Send Message
                 </button>
@@ -165,7 +165,7 @@ export default function ContactPage() {
                     href={MAPS_URL}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-3 border border-accent bg-primary px-9 py-4 font-heading text-xs font-semibold uppercase tracking-[0.3em] text-primary-foreground transition-opacity hover:opacity-90"
+                    className="inline-flex items-center gap-3 border border-accent bg-primary px-9 py-4 font-heading text-sm font-semibold uppercase tracking-[0.3em] text-primary-foreground transition-opacity hover:opacity-90"
                   >
                     Get Directions
                   </a>
@@ -175,7 +175,7 @@ export default function ContactPage() {
 
             {/* Map embed placeholder */}
             <div className="aspect-video overflow-hidden border border-accent bg-muted">
-              <div className="flex h-full items-center justify-center text-[0.65rem] uppercase tracking-[0.3em] text-muted-foreground">
+              <div className="flex h-full items-center justify-center text-sm uppercase tracking-[0.3em] text-muted-foreground">
                 [Google Maps embed to be added]
               </div>
             </div>

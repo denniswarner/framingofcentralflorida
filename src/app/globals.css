@@ -5,6 +5,10 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
+  /* Minimum readable size on the live site: 14px (0.875rem). */
+  --text-xs: 0.875rem;
+  --text-xs--line-height: calc(1.25 / 0.875);
+
   --color-onyx: var(--color-onyx);
   --color-wheat: var(--color-wheat);
   --color-oceanic: var(--color-oceanic);
@@ -76,7 +80,8 @@
   --muted-foreground: #5A4F36;
   --accent: #B89456;
   --accent-foreground: #0C0B08;
-  --accent-deep: #8B6B3A;
+  /* Reason: #8B6B3A was 4.18:1 on wheat; 4.5:1 is required for small text. */
+  --accent-deep: #806232;
   --destructive: oklch(0.577 0.245 27.325);
   --border: #B89456;
   --input: #B89456;

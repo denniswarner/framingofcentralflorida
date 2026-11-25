@@ -5,7 +5,8 @@ import { socialLinks } from "@/data/social-links";
 const navLinks = [
   { href: "/", label: "Home" },
   { href: "/about", label: "About" },
-  { href: "/framing-styles", label: "Framing Styles" },
+  { href: "/framing-styles", label: "Styles" },
+  { href: "/services", label: "Services" },
   { href: "/gallery", label: "Gallery" },
   { href: "/contact", label: "Contact Us" },
 ] as const;
@@ -24,9 +25,9 @@ export function Footer() {
         <div className="mx-auto mt-12 grid max-w-4xl gap-10 text-center sm:grid-cols-3 sm:text-left">
           {/* Brand & address */}
           <div className="space-y-4">
-            <h3 className="text-[0.65rem] uppercase tracking-[0.4em] text-accent">
+            <h2 className="text-sm uppercase tracking-[0.4em] text-accent">
               Visit
-            </h3>
+            </h2>
             <address className="text-sm not-italic leading-relaxed text-background/80">
               <a
                 href="https://www.google.com/maps/search/?api=1&query=Framing+of+Central+Florida%2C+1820+N+Orange+Ave%2C+Orlando%2C+FL+32804"
@@ -50,10 +51,10 @@ export function Footer() {
 
           {/* Quick nav */}
           <div className="space-y-4">
-            <h3 className="text-[0.65rem] uppercase tracking-[0.4em] text-accent">
+            <h2 className="text-sm uppercase tracking-[0.4em] text-accent">
               Quick Links
-            </h3>
-            <nav className="flex flex-col gap-2">
+            </h2>
+            <nav aria-label="Footer" className="flex flex-col gap-2">
               {navLinks.map((link) => (
                 <Link
                   key={link.href}
@@ -68,9 +69,9 @@ export function Footer() {
 
           {/* Hours */}
           <div className="space-y-4">
-            <h3 className="text-[0.65rem] uppercase tracking-[0.4em] text-accent">
+            <h2 className="text-sm uppercase tracking-[0.4em] text-accent">
               Hours
-            </h3>
+            </h2>
             <p className="text-sm leading-relaxed text-background/80">
               Monday &ndash; Friday: 10 AM &ndash; 5 PM
               <br />
@@ -82,9 +83,9 @@ export function Footer() {
         </div>
 
         <div className="mt-12 flex flex-col items-center gap-4 border-t border-accent/40 pt-6 sm:flex-row sm:justify-between">
-          <p className="text-[0.65rem] uppercase tracking-[0.3em] text-background/60">
+          <p className="text-sm uppercase tracking-[0.3em] text-background/60">
             &copy; {new Date().getFullYear()} Framing of Central Florida
-            <span className="ml-2 text-background/40">v0.3</span>
+            <span className="ml-2 text-background/60">v0.3</span>
           </p>
           <ul className="flex items-center gap-4">
             {socialLinks.map(({ href, label, Icon }) => (

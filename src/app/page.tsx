@@ -16,13 +16,13 @@ export default function HomePage() {
         <div className="mx-auto max-w-4xl border border-accent p-3">
           <div className="border border-accent px-6 py-20 text-center sm:px-12 sm:py-28">
             <DecoMark className="mx-auto h-12 w-12" />
-            <p className="mt-6 text-[0.65rem] uppercase tracking-[0.5em] text-accent-deep">
+            <p className="mt-6 text-sm uppercase tracking-[0.5em] text-accent-deep">
               Custom Framing · Museum Quality
             </p>
             <h1 className="mt-6 font-heading text-5xl font-semibold leading-[1.05] tracking-[0.04em] sm:text-6xl lg:text-7xl">
               CRAFTED
               <br />
-              <span className="text-accent">WITH</span>
+              <span className="text-accent-deep">WITH</span>
               <br />
               CARE
             </h1>
@@ -39,13 +39,13 @@ export default function HomePage() {
                 href={MAPS_URL}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-3 border border-accent bg-primary px-9 py-4 font-heading text-xs font-semibold uppercase tracking-[0.3em] text-primary-foreground transition-opacity hover:opacity-90"
+                className="inline-flex items-center gap-3 border border-accent bg-primary px-9 py-4 font-heading text-sm font-semibold uppercase tracking-[0.3em] text-primary-foreground transition-opacity hover:opacity-90"
               >
                 Visit Our Shop
               </a>
               <Link
                 href="/gallery"
-                className="font-heading text-xs font-medium uppercase tracking-[0.3em] underline-offset-4 hover:underline"
+                className="font-heading text-sm font-medium uppercase tracking-[0.3em] underline-offset-4 hover:underline"
               >
                 View our work →
               </Link>
@@ -59,7 +59,7 @@ export default function HomePage() {
       {/* Why us */}
       <section className="container mx-auto px-4 py-20">
         <div className="mx-auto max-w-3xl space-y-10 text-center">
-          <p className="text-[0.65rem] uppercase tracking-[0.5em] text-accent-deep">
+          <p className="text-sm uppercase tracking-[0.5em] text-accent-deep">
             Why us
           </p>
           <h2 className="font-heading text-3xl font-medium leading-tight tracking-[0.05em] sm:text-4xl">
@@ -83,7 +83,7 @@ export default function HomePage() {
           <div>
             <Link
               href="/about"
-              className="font-heading text-xs font-medium uppercase tracking-[0.3em] underline-offset-4 hover:underline"
+              className="font-heading text-sm font-medium uppercase tracking-[0.3em] underline-offset-4 hover:underline"
             >
               Learn more about our story →
             </Link>
@@ -112,10 +112,10 @@ export default function HomePage() {
                     i > 0 ? "sm:border-l" : ""
                   }`}
                 >
-                  <p className="font-heading text-6xl font-semibold tracking-[0.04em] text-accent">
+                  <p className="font-heading text-6xl font-semibold tracking-[0.04em] text-accent-deep">
                     {stat}
                   </p>
-                  <p className="text-[0.65rem] uppercase tracking-[0.3em] text-muted-foreground">
+                  <p className="text-sm uppercase tracking-[0.3em] text-muted-foreground">
                     {label}
                   </p>
                 </div>
@@ -132,7 +132,7 @@ export default function HomePage() {
               ].map((tag) => (
                 <span
                   key={tag}
-                  className="text-[0.65rem] uppercase tracking-[0.25em] text-muted-foreground"
+                  className="text-sm uppercase tracking-[0.25em] text-muted-foreground"
                 >
                   {tag}
                 </span>
@@ -165,7 +165,7 @@ export default function HomePage() {
               href={MAPS_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-3 bg-accent px-10 py-4 font-heading text-xs font-semibold uppercase tracking-[0.3em] text-foreground transition-opacity hover:opacity-90"
+              className="inline-flex items-center gap-3 bg-accent px-10 py-4 font-heading text-sm font-semibold uppercase tracking-[0.3em] text-foreground transition-opacity hover:opacity-90"
             >
               Visit Our Shop
             </a>
