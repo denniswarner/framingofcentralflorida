@@ -1,0 +1,58 @@
+---
+import "@fontsource/cormorant-garamond/latin-300.css";
+import "@fontsource/cormorant-garamond/latin-400.css";
+import "@fontsource/cormorant-garamond/latin-500.css";
+import "@fontsource/cormorant-garamond/latin-600.css";
+import "@fontsource/cormorant-garamond/latin-300-italic.css";
+import "@fontsource/cormorant-garamond/latin-400-italic.css";
+import "@fontsource/cormorant-garamond/latin-500-italic.css";
+import "@fontsource/cormorant-garamond/latin-600-italic.css";
+import "@fontsource/cinzel/latin-400.css";
+import "@fontsource/cinzel/latin-500.css";
+import "@fontsource/cinzel/latin-600.css";
+import "@fontsource/cinzel/latin-700.css";
+import "@/styles/global.css";
+import Header from "@/components/Header.astro";
+import Footer from "@/components/Footer.astro";
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title,
+  description = "Custom picture framing in Orlando, FL. Expert craftsmanship for art, photography, memorabilia, and more.",
+} = Astro.props;
+
+const fullTitle = title
+  ? `${title} | Framing of Central Florida`
+  : "Framing of Central Florida";
+---
+
+<!doctype html>
+<html
+  lang="en"
+  class="h-full antialiased"
+  style="--font-sans: 'Cormorant Garamond'; --font-heading: 'Cinzel';"
+>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <title>{fullTitle}</title>
+    <meta name="description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:site_name" content="Framing of Central Florida" />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+  </head>
+  <body class="flex min-h-full flex-col">
+    <Header />
+    <div class="flex-1">
+      <slot />
+    </div>
+    <Footer />
+  </body>
+</html>

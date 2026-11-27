@@ -1,0 +1,139 @@
+---
+import { navLinks } from "@/data/nav";
+import Icon from "@/components/icons.astro";
+import Ornament from "@/components/ornaments.astro";
+
+const pathname = Astro.url.pathname;
+
+function isCurrent(href: string) {
+  if (href === "/") return pathname === "/";
+  return pathname === href || pathname.startsWith(`${href}/`);
+}
+---
+
+<header
+  class="sticky top-0 z-50 w-full border-b border-accent bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/90"
+>
+  <div
+    class="container relative mx-auto flex flex-col items-center gap-3 px-4 py-6 text-center"
+  >
+    <div class="flex items-center justify-center gap-2 sm:gap-3">
+      <Ornament
+        name="chevron"
+        class="h-2.5 w-12 shrink-0 text-accent sm:h-3 sm:w-20"
+      />
+      <span
+        class="text-sm font-medium uppercase tracking-[0.2em] text-accent-deep sm:tracking-[0.45em]"
+      >
+        Established 1993 · Orlando
+      </span>
+      <Ornament
+        name="chevron"
+        class="h-2.5 w-12 shrink-0 text-accent sm:h-3 sm:w-20"
+      />
+    </div>
+    <div class="flex flex-col items-center gap-0.5">
+      <a
+        href="/"
+        class="font-heading text-xl font-semibold tracking-[0.18em] sm:text-2xl"
+      >
+        FRAMING OF CENTRAL FLORIDA
+      </a>
+      <p class="text-lg italic leading-none sm:text-xl">
+        From Memories to Masterpieces
+      </p>
+    </div>
+
+    <nav
+      aria-label="Primary"
+      class="mt-2 hidden flex-wrap items-center justify-center gap-7 md:flex"
+    >
+      {
+        navLinks.map((link) => (
+          <a
+            href={link.href}
+            class:list={[
+              "text-sm uppercase tracking-[0.35em] transition-colors",
+              isCurrent(link.href)
+                ? "text-accent-deep underline underline-offset-8"
+                : "text-foreground hover:text-accent-deep",
+            ]}
+          >
+            {link.label}
+          </a>
+        ))
+      }
+    </nav>
+
+    <button
+      id="site-menu-open"
+      type="button"
+      class="absolute right-4 top-6 inline-flex size-8 items-center justify-center hover:bg-muted hover:text-foreground focus-visible:ring-3 focus-visible:ring-ring/50 focus-visible:outline-none md:hidden"
+      aria-haspopup="dialog"
+      aria-controls="site-menu"
+    >
+      <Icon name="menu" width={20} height={20} />
+      <span class="sr-only">Toggle menu</span>
+    </button>
+
+    <dialog id="site-menu" aria-labelledby="site-menu-title">
+      <button
+        type="button"
+        data-menu-close
+        class="absolute top-3 right-3 inline-flex size-7 items-center justify-center hover:bg-muted focus-visible:ring-3 focus-visible:ring-ring/50 focus-visible:outline-none"
+      >
+        <Icon name="close" width={16} height={16} />
+        <span class="sr-only">Close</span>
+      </button>
+      <div class="px-4 pt-6">
+        <h2 id="site-menu-title" class="font-heading tracking-[0.2em]">MENU</h2>
+      </div>
+      <nav aria-label="Primary" class="mt-4 flex flex-col gap-1 px-4">
+        {
+          navLinks.map((link) => (
+            <a
+              href={link.href}
+              class:list={[
+                "block px-3 py-3 text-sm uppercase tracking-[0.3em] transition-colors",
+                isCurrent(link.href)
+                  ? "text-accent-deep"
+                  : "text-foreground hover:text-accent-deep",
+              ]}
+            >
+              {link.label}
+            </a>
+          ))
+        }
+      </nav>
+    </dialog>
+  </div>
+</header>
+
+<script>
+  const dialog = document.querySelector<HTMLDialogElement>("#site-menu");
+  const openButton = document.querySelector<HTMLButtonElement>("#site-menu-open");
+
+  openButton?.addEventListener("click", () => {
+    dialog?.showModal();
+  });
+
+  dialog?.addEventListener("click", (event) => {
+    if (!dialog) return;
+    const target = event.target;
+    if (!(target instanceof Element)) return;
+    if (target === dialog) {
+      dialog.close();
+      return;
+    }
+    if (target.closest("[data-menu-close]")) dialog.close();
+  });
+
+  dialog?.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") dialog.close();
+  });
+
+  const desktop = window.matchMedia("(min-width: 48rem)");
+  desktop.addEventListener("change", () => {
+    if (desktop.matches) dialog?.close();
+  });
+</script>

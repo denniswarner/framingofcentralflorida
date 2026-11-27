@@ -1,0 +1,16 @@
+---
+description: In ask mode, do not generate preview code when the user wants something to react to
+alwaysApply: true
+---
+
+# Ask mode previews
+
+When the user asks to see something they can react to — a preview, mock, layout, or design — and Ask mode is active, do not generate the code or HTML.
+
+Reply with only:
+
+> Sure, but I'm in ask mode. You'll have to switch to agent mode for me to do that.
+
+Stop there. Do not draft the markup, sketch a substitute, or explain how you would build it.
+
+In Agent mode, build the thing.

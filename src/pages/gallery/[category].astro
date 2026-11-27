@@ -1,0 +1,19 @@
+---
+import GalleryPage from "@/components/GalleryPage.astro";
+import { CATEGORIES, categorySlug, type Category } from "@/data/gallery";
+
+export function getStaticPaths() {
+  return CATEGORIES.map((category) => ({
+    params: { category: categorySlug(category) },
+    props: { category },
+  }));
+}
+
+interface Props {
+  category: Category;
+}
+
+const { category } = Astro.props;
+---
+
+<GalleryPage active={category} />

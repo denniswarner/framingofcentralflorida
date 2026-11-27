@@ -1,0 +1,923 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Content inventory — Framing of Central Florida</title>
+    <style>
+      :root {
+        --bg: #f7f4ef;
+        --card: #fff;
+        --ink: #1a1814;
+        --muted: #6b6458;
+        --accent: #2d6a6a;
+        --accent-soft: #e8f0f0;
+        --live: #2d6a4f;
+        --placeholder: #b45309;
+        --meta: #5b6b8a;
+        --ui: #6b7280;
+        --border: #d4cfc4;
+        --stack-w: 280px;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        font-family: system-ui, -apple-system, Segoe UI, sans-serif;
+        font-size: 15px;
+        line-height: 1.5;
+        color: var(--ink);
+        background: var(--bg);
+      }
+      header.doc-header {
+        position: sticky;
+        top: 0;
+        z-index: 10;
+        background: var(--card);
+        border-bottom: 1px solid var(--border);
+        padding: 1rem 1.5rem;
+      }
+      header.doc-header h1 {
+        margin: 0;
+        font-size: 1.15rem;
+        font-weight: 600;
+      }
+      header.doc-header p {
+        margin: 0.35rem 0 0;
+        color: var(--muted);
+        font-size: 0.875rem;
+      }
+      .toolbar {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        margin-top: 0.75rem;
+        align-items: center;
+      }
+      .toolbar label {
+        font-size: 0.75rem;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        color: var(--muted);
+      }
+      .toolbar select,
+      .toolbar input {
+        font: inherit;
+        padding: 0.35rem 0.5rem;
+        border: 1px solid var(--border);
+        border-radius: 4px;
+        background: var(--card);
+      }
+      .toolbar input {
+        min-width: 12rem;
+      }
+      .layout {
+        display: grid;
+        grid-template-columns: 220px 1fr;
+        gap: 0;
+        min-height: calc(100vh - 120px);
+      }
+      @media (max-width: 900px) {
+        .layout {
+          grid-template-columns: 1fr;
+        }
+        nav.toc {
+          display: none;
+        }
+      }
+      nav.toc {
+        border-right: 1px solid var(--border);
+        padding: 1rem;
+        background: var(--card);
+        position: sticky;
+        top: 108px;
+        align-self: start;
+        max-height: calc(100vh - 120px);
+        overflow-y: auto;
+      }
+      nav.toc a {
+        display: block;
+        padding: 0.35rem 0.5rem;
+        color: var(--ink);
+        text-decoration: none;
+        font-size: 0.875rem;
+        border-radius: 4px;
+      }
+      nav.toc a:hover,
+      nav.toc a.active {
+        background: var(--accent-soft);
+        color: var(--accent);
+      }
+      main {
+        padding: 1.5rem;
+        max-width: 1100px;
+      }
+      .page-panel {
+        margin-bottom: 2.5rem;
+        scroll-margin-top: 120px;
+      }
+      .page-panel h2 {
+        margin: 0 0 0.25rem;
+        font-size: 1.25rem;
+      }
+      .page-panel .route {
+        font-size: 0.8rem;
+        color: var(--muted);
+        font-family ui-monospace, monospace;
+        margin-bottom: 1rem;
+      }
+      .page-grid {
+        display: grid;
+        grid-template-columns: var(--stack-w) 1fr;
+        gap: 1.5rem;
+        align-items: start;
+      }
+      @media (max-width: 700px) {
+        .page-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+      .stack {
+        border: 2px solid var(--ink);
+        border-radius: 6px;
+        overflow: hidden;
+        background: var(--card);
+        box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.06);
+      }
+      .stack-label {
+        font-size: 0.65rem;
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+        text-align: center;
+        padding: 0.4rem;
+        background: var(--ink);
+        color: #fff;
+      }
+      .stack-block {
+        padding: 0.5rem 0.6rem;
+        font-size: 0.7rem;
+        border-bottom: 1px solid var(--border);
+        cursor: pointer;
+        transition: background 0.15s;
+      }
+      .stack-block:last-child {
+        border-bottom: none;
+      }
+      .stack-block:hover,
+      .stack-block.highlight {
+        background: var(--accent-soft);
+      }
+      .stack-block .name {
+        font-weight: 600;
+        display: block;
+      }
+      .stack-block .id {
+        font-family: ui-monospace, monospace;
+        color: var(--muted);
+        font-size: 0.65rem;
+      }
+      .stack-ornament {
+        text-align: center;
+        padding: 0.25rem;
+        font-size: 0.65rem;
+        color: var(--muted);
+        background: #faf8f5;
+        border-bottom: 1px solid var(--border);
+      }
+      .zones {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+      }
+      .zone {
+        border: 1px solid var(--border);
+        border-radius: 6px;
+        background: var(--card);
+        padding: 0.75rem 1rem;
+        scroll-margin-top: 120px;
+      }
+      .zone.hidden {
+        display: none;
+      }
+      .zone-head {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        align-items: center;
+        margin-bottom: 0.35rem;
+      }
+      .zone-id {
+        font-family: ui-monospace, monospace;
+        font-size: 0.8rem;
+        color: var(--accent);
+      }
+      .badge {
+        font-size: 0.65rem;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        padding: 0.15rem 0.45rem;
+        border-radius: 999px;
+        font-weight: 600;
+      }
+      .badge.live {
+        background: #d8f3e4;
+        color: var(--live);
+      }
+      .badge.placeholder {
+        background: #ffedd5;
+        color: var(--placeholder);
+      }
+      .badge.meta {
+        background: #e8ecf4;
+        color: var(--meta);
+      }
+      .badge.ui {
+        background: #f3f4f6;
+        color: var(--ui);
+      }
+      .role {
+        font-size: 0.75rem;
+        color: var(--muted);
+      }
+      .zone-body {
+        margin: 0;
+        font-size: 0.95rem;
+      }
+      .zone-src {
+        margin: 0.5rem 0 0;
+        font-size: 0.75rem;
+        color: var(--muted);
+        font-family: ui-monospace, monospace;
+      }
+      .legend {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.75rem;
+        font-size: 0.75rem;
+        margin-bottom: 1.5rem;
+        color: var(--muted);
+      }
+    </style>
+  </head>
+  <body>
+    <header class="doc-header">
+      <h1>Content inventory — placement map</h1>
+      <p>
+        Left: page stack (top → bottom). Right: full copy per zone. Matches
+        <code>content-inventory.md</code> and <code>content-sections.md</code>.
+      </p>
+      <div class="toolbar">
+        <label for="page-filter">Page</label>
+        <select id="page-filter" aria-label="Filter by page">
+          <option value="">All pages</option>
+        </select>
+        <label for="status-filter">Status</label>
+        <select id="status-filter" aria-label="Filter by status">
+          <option value="">All statuses</option>
+          <option value="live">Live</option>
+          <option value="placeholder">Placeholder</option>
+          <option value="meta">Meta</option>
+          <option value="ui">UI</option>
+        </select>
+        <label for="search">Search</label>
+        <input
+          id="search"
+          type="search"
+          placeholder="Zone ID or text…"
+          aria-label="Search zones"
+        />
+      </div>
+    </header>
+
+    <div class="layout">
+      <nav class="toc" id="toc" aria-label="Pages"></nav>
+      <main id="main">
+        <div class="legend">
+          <span><span class="badge live">live</span> on-site copy</span>
+          <span><span class="badge placeholder">placeholder</span> TBD in code</span>
+          <span><span class="badge meta">meta</span> SEO</span>
+          <span><span class="badge ui">ui</span> forms / chrome</span>
+        </div>
+        <div id="pages"></div>
+      </main>
+    </div>
+
+    <script>
+      const INVENTORY = [
+        {
+          id: "global",
+          title: "Global shell",
+          route: "Base.astro · header · footer",
+          sections: [
+            {
+              stack: "Header",
+              blocks: [
+                { id: "global.header.wordmark", label: "Wordmark" },
+                { id: "global.header.tagline", label: "Tagline" },
+                { id: "global.header.est", label: "Established" },
+                { id: "global.header.nav", label: "Navigation" },
+              ],
+            },
+            {
+              stack: "Footer",
+              blocks: [
+                { id: "global.footer.visit", label: "Visit column" },
+                { id: "global.footer.quick-links", label: "Quick links" },
+                { id: "global.footer.hours", label: "Hours" },
+                { id: "global.footer.copyright", label: "Copyright" },
+              ],
+            },
+            {
+              stack: "Meta",
+              blocks: [{ id: "global.meta", label: "Root SEO" }],
+            },
+          ],
+          zones: [
+            {
+              id: "global.header.wordmark",
+              role: "Site title",
+              status: "live",
+              content: "FRAMING OF CENTRAL FLORIDA",
+              src: "src/components/Header.astro",
+            },
+            {
+              id: "global.header.tagline",
+              role: "Subtitle",
+              status: "live",
+              content: "From Memories to Masterpieces",
+              src: "Header.astro",
+            },
+            {
+              id: "global.header.est",
+              role: "Eyebrow",
+              status: "live",
+              content: "Established 1993 · Orlando",
+              src: "Header.astro",
+            },
+            {
+              id: "global.header.nav",
+              role: "Primary nav",
+              status: "live",
+              content:
+                "Home · About · Styles · Services · Gallery · Contact Us",
+              src: "Header.astro",
+            },
+            {
+              id: "global.footer.visit",
+              role: "NAP",
+              status: "live",
+              content:
+                "1820 N. Orange Ave, Orlando FL 32804 · (407) 894-8644",
+              src: "Footer.astro",
+            },
+            {
+              id: "global.footer.quick-links",
+              role: "Footer nav",
+              status: "live",
+              content: "Same six routes as header",
+              src: "Footer.astro",
+            },
+            {
+              id: "global.footer.hours",
+              role: "Hours",
+              status: "live",
+              content:
+                "Mon–Fri 10–5 · Sat 10–3 · Sun closed",
+              src: "Footer.astro",
+            },
+            {
+              id: "global.footer.copyright",
+              role: "Legal",
+              status: "live",
+              content: "© {year} Framing of Central Florida",
+              src: "Footer.astro",
+            },
+            {
+              id: "global.meta",
+              role: "Default title & description",
+              status: "meta",
+              content:
+                "Framing of Central Florida — Custom picture framing in Orlando, FL.",
+              src: "src/layouts/Base.astro",
+            },
+          ],
+        },
+        {
+          id: "home",
+          title: "Home",
+          route: "/",
+          sections: [
+            {
+              stack: "Hero",
+              blocks: [
+                { id: "home.hero.eyebrow", label: "Eyebrow" },
+                { id: "home.hero.h1", label: "Display H1" },
+                { id: "home.hero.body", label: "Lead" },
+                { id: "home.hero.cta-primary", label: "CTAs" },
+              ],
+            },
+            { ornament: true },
+            {
+              stack: "Why us",
+              blocks: [
+                { id: "home.why-us.h2", label: "H2 + body" },
+                { id: "home.why-us.callout", label: "Callout" },
+                { id: "home.why-us.link", label: "Link" },
+              ],
+            },
+            { ornament: true },
+            {
+              stack: "At a glance",
+              blocks: [
+                { id: "home.at-a-glance.h2", label: "Tagline" },
+                { id: "home.at-a-glance.stat-1", label: "3 stats" },
+                { id: "home.at-a-glance.tags", label: "Tags" },
+              ],
+            },
+            { ornament: true },
+            {
+              stack: "Closing CTA",
+              blocks: [
+                { id: "home.closing-cta.h2", label: "H2" },
+                { id: "home.closing-cta.address-hours", label: "NAP + hours" },
+                { id: "home.closing-cta.button", label: "Button" },
+              ],
+            },
+          ],
+          zones: [
+            {
+              id: "home.hero.eyebrow",
+              role: "Eyebrow",
+              status: "live",
+              content: "Custom Framing · Museum Quality",
+              src: "src/pages/index.astro",
+            },
+            {
+              id: "home.hero.h1",
+              role: "Display heading",
+              status: "live",
+              content: "CRAFTED · WITH · CARE",
+              src: "index.astro",
+            },
+            {
+              id: "home.hero.body",
+              role: "Lead paragraph",
+              status: "live",
+              content:
+                "Boutique custom framing for art, photography, and memorabilia. Archival materials, museum-quality craftsmanship…",
+              src: "index.astro",
+            },
+            {
+              id: "home.hero.cta-primary",
+              role: "CTA",
+              status: "live",
+              content: "Visit Our Shop · View our work →",
+              src: "index.astro",
+            },
+            {
+              id: "home.why-us.h2",
+              role: "Section",
+              status: "live",
+              content:
+                "Why us — PERSONALIZATION · CRAFTSMANSHIP · PRESERVATION — plus body paragraph",
+              src: "index.astro",
+            },
+            {
+              id: "home.why-us.callout",
+              role: "Pull quote",
+              status: "live",
+              content:
+                "We only use archival-quality materials and UV-protective glass…",
+              src: "index.astro",
+            },
+            {
+              id: "home.why-us.link",
+              role: "Text link",
+              status: "live",
+              content: "Learn more about our story → /about",
+              src: "index.astro",
+            },
+            {
+              id: "home.at-a-glance.h2",
+              role: "Tagline",
+              status: "live",
+              content: "From Memories to Masterpieces",
+              src: "index.astro",
+            },
+            {
+              id: "home.at-a-glance.stat-1",
+              role: "Stats",
+              status: "live",
+              content:
+                "33+ years serving CF · 37+ years experience · Top 3 Orlando shops",
+              src: "index.astro",
+            },
+            {
+              id: "home.at-a-glance.tags",
+              role: "Tag row",
+              status: "live",
+              content:
+                "Boutique studio · Museum quality · Owner operated · Residential & commercial · Memorabilia · Knowledgeable staff",
+              src: "index.astro",
+            },
+            {
+              id: "home.closing-cta.h2",
+              role: "Display",
+              status: "live",
+              content: "COME IN FOR A FREE CONSULTATION",
+              src: "index.astro",
+            },
+            {
+              id: "home.closing-cta.address-hours",
+              role: "NAP + hours",
+              status: "live",
+              content:
+                "1820 N. Orange Ave · Mon–Fri 10–5 · Sat 10–3",
+              src: "index.astro",
+            },
+            {
+              id: "home.closing-cta.button",
+              role: "CTA",
+              status: "live",
+              content: "Visit Our Shop",
+              src: "index.astro",
+            },
+          ],
+        },
+        {
+          id: "about",
+          title: "About",
+          route: "/about",
+          sections: [
+            {
+              stack: "Page intro",
+              blocks: [{ id: "about.page-intro.h1", label: "Eyebrow + H1" }],
+            },
+            {
+              stack: "Story body",
+              blocks: [{ id: "about.story-body.p1", label: "Paragraphs" }],
+            },
+            {
+              stack: "Story media",
+              blocks: [{ id: "about.story-media.placeholder", label: "Media" }],
+            },
+          ],
+          zones: [
+            {
+              id: "about.page-intro.h1",
+              role: "Page intro",
+              status: "live",
+              content: "Our Story — ABOUT",
+              src: "src/pages/about.astro",
+            },
+            {
+              id: "about.story-body.p1",
+              role: "Story body",
+              status: "live",
+              content: "Two paragraphs: experience + in-person consultation policy",
+              src: "about.astro",
+            },
+            {
+              id: "about.story-media.placeholder",
+              role: "Story media",
+              status: "placeholder",
+              content: "[Team photo and detailed story content to be added]",
+              src: "about.astro",
+            },
+          ],
+        },
+        {
+          id: "framing-styles",
+          title: "Styles",
+          route: "/framing-styles",
+          sections: [
+            {
+              stack: "Page intro",
+              blocks: [{ id: "framing-styles.page-intro.h1", label: "Intro" }],
+            },
+            {
+              stack: "Style cards",
+              blocks: [
+                { id: "framing-styles.style-cards.items", label: "4 cards" },
+                {
+                  id: "framing-styles.style-cards.image-placeholder",
+                  label: "Images",
+                },
+              ],
+            },
+          ],
+          zones: [
+            {
+              id: "framing-styles.page-intro.h1",
+              role: "Page intro",
+              status: "live",
+              content: "STYLES — Our Craft — intro paragraph",
+              src: "framing-styles.astro",
+            },
+            {
+              id: "framing-styles.style-cards.items",
+              role: "Style cards (grouped)",
+              status: "live",
+              content:
+                "Traditional Wood · Ornate & Gold · Modern & Minimalist · Shadow Box — full copy in content-inventory.md",
+              src: "framing-styles.astro",
+            },
+            {
+              id: "framing-styles.style-cards.image-placeholder",
+              role: "Card images",
+              status: "placeholder",
+              content: "[Sample images to be added] ×4",
+              src: "framing-styles.astro",
+            },
+          ],
+        },
+        {
+          id: "services",
+          title: "Services",
+          route: "/services",
+          sections: [
+            {
+              stack: "Page intro",
+              blocks: [{ id: "services.page-intro.h1", label: "Intro" }],
+            },
+            {
+              stack: "Service cards",
+              blocks: [
+                { id: "services.service-cards.items", label: "8 cards" },
+                {
+                  id: "services.service-cards.image-placeholder",
+                  label: "Image",
+                },
+              ],
+            },
+          ],
+          zones: [
+            {
+              id: "services.page-intro.h1",
+              role: "Page intro",
+              status: "live",
+              content: "SERVICES — What We Do — intro paragraph",
+              src: "services.astro",
+            },
+            {
+              id: "services.service-cards.items",
+              role: "Service cards (grouped)",
+              status: "live",
+              content:
+                "Glass Replacement · Mat Replacement · Frame Repair · Canvas Stretching · Memorabilia · Diplomas & Documents · Commercial Framing · Installation — full copy in content-inventory.md",
+              src: "services.astro",
+            },
+            {
+              id: "services.service-cards.image-placeholder",
+              role: "Card images",
+              status: "placeholder",
+              content: "[Sample images to be added] ×8",
+              src: "services.astro",
+            },
+          ],
+        },
+        {
+          id: "gallery",
+          title: "Gallery",
+          route: "/gallery",
+          sections: [
+            {
+              stack: "Page intro",
+              blocks: [{ id: "gallery.page-intro.h1", label: "Intro" }],
+            },
+            {
+              stack: "Category filters",
+              blocks: [{ id: "gallery.category-filters.labels", label: "Filters" }],
+            },
+            {
+              stack: "Gallery grid",
+              blocks: [{ id: "gallery.gallery-grid.items", label: "Grid" }],
+            },
+          ],
+          zones: [
+            {
+              id: "gallery.page-intro.h1",
+              role: "Page intro",
+              status: "live",
+              content: "GALLERY — filter by category intro",
+              src: "GalleryPage.astro",
+            },
+            {
+              id: "gallery.category-filters.labels",
+              role: "Category filters",
+              status: "live",
+              content:
+                "All · Fine Art · Stretched Canvas · Memorabilia · Jersey · Diplomas",
+              src: "src/data/gallery.ts",
+            },
+            {
+              id: "gallery.gallery-grid.items",
+              role: "Gallery grid",
+              status: "live",
+              content: "14 placeholder tiles (titles in data/gallery.ts, images TBD)",
+              src: "gallery.ts",
+            },
+          ],
+        },
+        {
+          id: "contact",
+          title: "Contact",
+          route: "/contact",
+          sections: [
+            {
+              stack: "Page intro",
+              blocks: [{ id: "contact.page-intro.h1", label: "Intro" }],
+            },
+            {
+              stack: "Send a message",
+              blocks: [{ id: "contact.send-a-message.h2", label: "Form" }],
+            },
+            {
+              stack: "Visit our shop",
+              blocks: [{ id: "contact.visit-our-shop.h2", label: "NAP" }],
+            },
+            {
+              stack: "Map embed",
+              blocks: [{ id: "contact.map-embed.placeholder", label: "Map" }],
+            },
+          ],
+          zones: [
+            {
+              id: "contact.page-intro.h1",
+              role: "Page intro",
+              status: "live",
+              content: "CONTACT US — Get in touch intro",
+              src: "contact.astro",
+            },
+            {
+              id: "contact.send-a-message.h2",
+              role: "Send a message",
+              status: "ui",
+              content:
+                "Send message · form fields · consultation policy paragraph",
+              src: "contact.astro",
+            },
+            {
+              id: "contact.visit-our-shop.h2",
+              role: "Visit our shop",
+              status: "live",
+              content: "NAP · hours · social · Get Directions",
+              src: "contact.astro",
+            },
+            {
+              id: "contact.map-embed.placeholder",
+              role: "Map embed",
+              status: "placeholder",
+              content: "[Google Maps embed to be added]",
+              src: "contact.astro",
+            },
+          ],
+        },
+      ];
+
+      const pagesEl = document.getElementById("pages");
+      const tocEl = document.getElementById("toc");
+      const pageFilter = document.getElementById("page-filter");
+      const statusFilter = document.getElementById("status-filter");
+      const searchInput = document.getElementById("search");
+
+      INVENTORY.forEach((page) => {
+        const opt = document.createElement("option");
+        opt.value = page.id;
+        opt.textContent = page.title;
+        pageFilter.appendChild(opt);
+
+        const tocLink = document.createElement("a");
+        tocLink.href = `#page-${page.id}`;
+        tocLink.textContent = page.title;
+        tocEl.appendChild(tocLink);
+      });
+
+      function renderStack(page) {
+        const stack = document.createElement("div");
+        stack.className = "stack";
+        const label = document.createElement("div");
+        label.className = "stack-label";
+        label.textContent = "Top → bottom";
+        stack.appendChild(label);
+
+        page.sections.forEach((sec) => {
+          if (sec.ornament) {
+            const o = document.createElement("div");
+            o.className = "stack-ornament";
+            o.textContent = "◆ ornament";
+            stack.appendChild(o);
+            return;
+          }
+          sec.blocks.forEach((block) => {
+            const b = document.createElement("div");
+            b.className = "stack-block";
+            b.dataset.zone = block.id;
+            b.innerHTML = `<span class="name">${sec.stack}: ${block.label}</span><span class="id">${block.id}</span>`;
+            b.addEventListener("click", () => {
+              document
+                .getElementById(`zone-${CSS.escape(block.id)}`)
+                ?.scrollIntoView({ behavior: "smooth", block: "center" });
+              document
+                .querySelectorAll(".stack-block")
+                .forEach((el) => el.classList.remove("highlight"));
+              b.classList.add("highlight");
+            });
+            stack.appendChild(b);
+          });
+        });
+        return stack;
+      }
+
+      function renderZones(page) {
+        const wrap = document.createElement("div");
+        wrap.className = "zones";
+        page.zones.forEach((z) => {
+          const el = document.createElement("article");
+          el.className = "zone";
+          el.id = `zone-${z.id}`;
+          el.dataset.page = page.id;
+          el.dataset.status = z.status;
+          el.dataset.search =
+            `${z.id} ${z.content} ${z.role}`.toLowerCase();
+          el.innerHTML = `
+            <div class="zone-head">
+              <span class="zone-id">${z.id}</span>
+              <span class="badge ${z.status}">${z.status}</span>
+              <span class="role">${z.role}</span>
+            </div>
+            <p class="zone-body">${escapeHtml(z.content)}</p>
+            <p class="zone-src">${escapeHtml(z.src)}</p>
+          `;
+          wrap.appendChild(el);
+        });
+        return wrap;
+      }
+
+      function escapeHtml(s) {
+        return s
+          .replace(/&/g, "&amp;")
+          .replace(/</g, "&lt;")
+          .replace(/>/g, "&gt;");
+      }
+
+      INVENTORY.forEach((page) => {
+        const panel = document.createElement("section");
+        panel.className = "page-panel";
+        panel.id = `page-${page.id}`;
+        panel.dataset.page = page.id;
+        panel.innerHTML = `<h2>${page.title}</h2><p class="route">${page.route}</p>`;
+        const grid = document.createElement("div");
+        grid.className = "page-grid";
+        grid.appendChild(renderStack(page));
+        grid.appendChild(renderZones(page));
+        panel.appendChild(grid);
+        pagesEl.appendChild(panel);
+      });
+
+      function applyFilters() {
+        const page = pageFilter.value;
+        const status = statusFilter.value;
+        const q = searchInput.value.trim().toLowerCase();
+
+        document.querySelectorAll(".page-panel").forEach((panel) => {
+          const matchPage = !page || panel.dataset.page === page;
+          panel.style.display = matchPage ? "" : "none";
+        });
+
+        document.querySelectorAll(".zone").forEach((zone) => {
+          const matchPage = !page || zone.dataset.page === page;
+          const matchStatus = !status || zone.dataset.status === status;
+          const matchSearch = !q || zone.dataset.search.includes(q);
+          zone.classList.toggle(
+            "hidden",
+            !(matchPage && matchStatus && matchSearch)
+          );
+        });
+      }
+
+      pageFilter.addEventListener("change", applyFilters);
+      statusFilter.addEventListener("change", applyFilters);
+      searchInput.addEventListener("input", applyFilters);
+
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((e) => {
+            if (e.isIntersecting) {
+              const id = e.target.id.replace("page-", "");
+              tocEl.querySelectorAll("a").forEach((a) => {
+                a.classList.toggle(
+                  "active",
+                  a.getAttribute("href") === `#page-${id}`
+                );
+              });
+            }
+          });
+        },
+        { rootMargin: "-30% 0px -60% 0px" }
+      );
+      document.querySelectorAll(".page-panel").forEach((p) => observer.observe(p));
+    </script>
+  </body>
+</html>

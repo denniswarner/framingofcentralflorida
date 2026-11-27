@@ -1,0 +1,84 @@
+---
+interface Props {
+  name: "mark" | "chevron" | "ornament";
+  class?: string;
+}
+
+const { name, class: className = "" } = Astro.props;
+---
+
+{
+  name === "mark" && (
+    <svg
+      viewBox="0 0 32 32"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="1"
+      stroke-linecap="round"
+      class={className}
+      aria-hidden="true"
+    >
+      <path d="M16 28 L8 8" />
+      <path d="M16 28 L12 6" />
+      <path d="M16 28 L16 4" />
+      <path d="M16 28 L20 6" />
+      <path d="M16 28 L24 8" />
+      <line x1="3" y1="28" x2="29" y2="28" />
+      <line x1="5" y1="30" x2="27" y2="30" />
+      <circle cx="16" cy="28" r="1.5" fill="currentColor" stroke="none" />
+    </svg>
+  )
+}
+
+{
+  name === "chevron" && (
+    <svg
+      viewBox="0 0 240 16"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="0.75"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      class={className}
+      aria-hidden="true"
+    >
+      <path d="M0 12 L12 4 L24 12 L36 4 L48 12 L60 4 L72 12 L84 4 L96 12 L108 4 L120 12 L132 4 L144 12 L156 4 L168 12 L180 4 L192 12 L204 4 L216 12 L228 4 L240 12" />
+      <path
+        d="M0 8 L12 0 L24 8 L36 0 L48 8 L60 0 L72 8 L84 0 L96 8 L108 0 L120 8 L132 0 L144 8 L156 0 L168 8 L180 0 L192 8 L204 0 L216 8 L228 0 L240 8"
+        opacity="0.45"
+      />
+    </svg>
+  )
+}
+
+{
+  name === "ornament" && (
+    <div
+      aria-hidden="true"
+      class:list={[
+        "flex items-center justify-center gap-5 py-12 text-accent",
+        className,
+      ]}
+    >
+      <span class="h-px w-20 bg-current sm:w-32" />
+      <svg
+        viewBox="0 0 32 32"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1"
+        stroke-linecap="round"
+        class="h-8 w-8"
+      >
+        <path d="M16 28 L8 8" />
+        <path d="M16 28 L12 6" />
+        <path d="M16 28 L16 4" />
+        <path d="M16 28 L20 6" />
+        <path d="M16 28 L24 8" />
+        <line x1="3" y1="28" x2="29" y2="28" />
+        <line x1="5" y1="30" x2="27" y2="30" />
+        <circle cx="16" cy="28" r="1.5" fill="currentColor" stroke="none" />
+      </svg>
+      <span class="h-px w-20 bg-current sm:w-32" />
+    </div>
+  )
+}

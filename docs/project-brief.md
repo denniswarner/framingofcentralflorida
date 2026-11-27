@@ -15,13 +15,10 @@ Brand-new website. Not a migration or redesign of an existing site.
 - **Domain**: TBD.
 
 ## Stack (in place)
-- Next.js (App Router) + TypeScript
-- Tailwind CSS
-- shadcn/ui (`components.json` present)
+- Astro (static) + TypeScript
+- Tailwind CSS v4
 - pnpm
-- Deployment target: TBD (Vercel is the path of least resistance given Next.js).
-
-See `AGENTS.md` for Next.js version notes — this project is on a newer Next.js with breaking changes from older docs.
+- Deployment target: any static host.
 
 ## In scope for v1 (Labor Day launch)
 - Home page with hero, value props, social proof, and clear shop-visit CTA.
@@ -48,7 +45,7 @@ See `AGENTS.md` for Next.js version notes — this project is on a newer Next.js
 ## Risks
 - **Content drag**: bespoke photography and copy are the most likely path to a slipped Labor Day date. Lock a content-freeze date ~3 weeks before launch.
 - **Scope creep from "cool features"**: park ideas like fullPage.js in their own PRDs instead of bolting them on.
-- **Stale Next.js training data**: agents and contributors may pattern-match to older Next.js APIs. Enforce reading `node_modules/next/dist/docs/` per `AGENTS.md`.
+- **Client script creep**: the shipped site is static HTML. The mobile menu and gallery filter are the only client scripts. New behavior should stay that small.
 
 ## Rough milestones (to be refined)
 - **May 2026**: information architecture locked, design direction approved, content outline drafted.

@@ -52,11 +52,13 @@ Same segments as the website: homeowners, collectors, commercial clients, govern
 
 ## Tech sketch
 
+The site itself is static Astro with no server. Everything below past Phase 0 needs a host that runs code — a separate service, or serverless functions added alongside the static build.
+
 | Layer | Option |
 | --- | --- |
 | Newsletter platform | Beehiiv (free tier, good API), MailerLite, or ConvertKit |
 | Subscribe form on site | Embed via the platform; capture in a single form in the footer + dedicated `/newsletter` page |
-| Scheduler | Vercel Cron (free; runs weekly/monthly jobs as Next.js route handlers) |
+| Scheduler | A cron-capable host (Vercel Cron, GitHub Actions, or the platform's own automation) |
 | Database | Neon Postgres or Supabase (drafts, sources config, ingested items, audit trail) |
 | AI | Anthropic API (Claude Sonnet for drafting; prompt-cache style guide + Ray's voice samples) |
 | Admin UI | Authenticated route on the site (Clerk or Auth.js); list of draft issues with edit + approve actions |
@@ -89,7 +91,7 @@ Same segments as the website: homeowners, collectors, commercial clients, govern
 - Platform pick: Beehiiv vs. MailerLite vs. ConvertKit — depends on Ray's preference for editor UX and pricing as the list grows.
 - Authoring voice: how does Ray want to sound? Need ~3-5 sample emails or interview notes to seed the voice prompt.
 - Legal: confirm scraping/news API ToS for any external sources before they go to production.
-- Where does the admin review UI live — same Next.js app on a `/admin` route, or a separate tool?
+- Where does the admin review UI live? The marketing site is static, so this is a separate app or a hosted tool.
 
 ## Success criteria (when revisited post-launch)
 - Subscribe form gets traction (a few sign-ups per week without ad spend).

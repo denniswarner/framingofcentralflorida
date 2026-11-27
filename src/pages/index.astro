@@ -1,0 +1,186 @@
+---
+import Base from "@/layouts/Base.astro";
+import Ornament from "@/components/ornaments.astro";
+
+const mapsUrl =
+  "https://www.google.com/maps/search/?api=1&query=Framing+of+Central+Florida%2C+1820+N+Orange+Ave%2C+Orlando%2C+FL+32804";
+
+const stats = [
+  { stat: "33+", label: "Years serving Central Florida" },
+  { stat: "37+", label: "Years of framing experience" },
+  { stat: "Top 3", label: "Frame shops in Orlando" },
+];
+
+const tags = [
+  "Boutique Custom Framing Studio",
+  "Museum-Quality Craftsmanship",
+  "Owner Operated",
+  "Residential & Commercial",
+  "Memorabilia Specialists",
+  "Knowledgeable Staff",
+];
+---
+
+<Base>
+  <main>
+    <section class="container mx-auto px-4 py-20 lg:py-28">
+      <div class="mx-auto max-w-4xl border border-accent p-3">
+        <div
+          class="border border-accent px-6 py-20 text-center sm:px-12 sm:py-28"
+        >
+          <Ornament name="mark" class="mx-auto h-12 w-12" />
+          <p class="mt-6 text-sm uppercase tracking-[0.5em] text-accent-deep">
+            Custom Framing · Museum Quality
+          </p>
+          <h1
+            class="mt-6 font-heading text-5xl leading-[1.05] font-semibold tracking-[0.04em] sm:text-6xl lg:text-7xl"
+          >
+            CRAFTED
+            <br />
+            <span class="text-accent-deep">WITH</span>
+            <br />
+            CARE
+          </h1>
+          <div class="mx-auto mt-8 flex justify-center">
+            <Ornament name="chevron" class="h-3 w-32 text-accent" />
+          </div>
+          <p
+            class="mx-auto mt-8 max-w-xl text-lg leading-relaxed text-muted-foreground italic"
+          >
+            Boutique custom framing for art, photography, and memorabilia.
+            Archival materials, museum-quality craftsmanship, and the patient
+            attention every piece deserves.
+          </p>
+          <div class="mt-10 flex flex-wrap items-center justify-center gap-5">
+            <a
+              href={mapsUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex items-center gap-3 border border-accent bg-primary px-9 py-4 font-heading text-sm font-semibold tracking-[0.3em] text-primary-foreground uppercase transition-opacity hover:opacity-90"
+            >
+              Visit Our Shop
+            </a>
+            <a
+              href="/gallery"
+              class="font-heading text-sm font-medium tracking-[0.3em] uppercase underline-offset-4 hover:underline"
+            >
+              View our work →
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <Ornament name="ornament" />
+
+    <section class="container mx-auto px-4 py-20">
+      <div class="mx-auto max-w-3xl space-y-10 text-center">
+        <p class="text-sm uppercase tracking-[0.5em] text-accent-deep">
+          Why us
+        </p>
+        <h2
+          class="font-heading text-3xl leading-tight font-medium tracking-[0.05em] sm:text-4xl"
+        >
+          PERSONALIZATION · CRAFTSMANSHIP · PRESERVATION
+        </h2>
+        <p class="text-lg leading-relaxed">
+          No two pieces are alike, so no two frames should be. We sit down with
+          you to choose the moulding, mats, and glass that suit your piece and
+          your space, then build it by hand in our shop with skills refined
+          over decades. Whether it's a family heirloom or a contemporary print,
+          we treat every piece as if it were our own, and frame it to last for
+          generations.
+        </p>
+        <div class="mx-auto inline-block border border-accent px-10 py-8">
+          <p class="text-xl leading-snug font-medium italic">
+            We only use archival-quality materials and
+            <br />
+            UV-protective glass to preserve your valuable artwork.
+          </p>
+        </div>
+        <div>
+          <a
+            href="/about"
+            class="font-heading text-sm font-medium tracking-[0.3em] uppercase underline-offset-4 hover:underline"
+          >
+            Learn more about our story →
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <Ornament name="ornament" />
+
+    <section class="container mx-auto px-4 py-20">
+      <div class="mx-auto max-w-5xl border border-accent p-3">
+        <div class="border border-accent px-6 py-16 sm:px-12">
+          <p class="text-center text-4xl leading-tight italic sm:text-5xl">
+            From Memories to Masterpieces
+          </p>
+          <div class="mx-auto mt-12 grid max-w-4xl gap-0 sm:grid-cols-3">
+            {
+              stats.map(({ stat, label }, i) => (
+                <div
+                  class:list={[
+                    "space-y-3 border-accent px-6 py-6 text-center",
+                    i > 0 && "sm:border-l",
+                  ]}
+                >
+                  <p class="font-heading text-6xl font-semibold tracking-[0.04em] text-accent-deep">
+                    {stat}
+                  </p>
+                  <p class="text-sm tracking-[0.3em] text-muted-foreground uppercase">
+                    {label}
+                  </p>
+                </div>
+              ))
+            }
+          </div>
+          <div
+            class="mx-auto mt-12 flex max-w-3xl flex-wrap items-center justify-center gap-x-6 gap-y-3"
+          >
+            {
+              tags.map((tag) => (
+                <span class="text-sm tracking-[0.25em] text-muted-foreground uppercase">
+                  {tag}
+                </span>
+              ))
+            }
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <Ornament name="ornament" />
+
+    <section class="bg-foreground text-background">
+      <div class="container mx-auto px-4 py-24 text-center">
+        <span class="text-accent">
+          <Ornament name="mark" class="mx-auto h-14 w-14" />
+        </span>
+        <h2
+          class="mt-8 font-heading text-4xl leading-tight font-medium tracking-[0.06em] sm:text-5xl"
+        >
+          COME IN FOR A
+          <br />
+          <span class="text-accent">FREE CONSULTATION</span>
+        </h2>
+        <p class="mt-8 text-base leading-relaxed opacity-80">
+          1820 N. Orange Ave · Orlando, FL 32804
+          <br />
+          Mon–Fri 10 AM–5 PM · Sat 10 AM–3 PM
+        </p>
+        <div class="mt-10">
+          <a
+            href={mapsUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-3 bg-accent px-10 py-4 font-heading text-sm font-semibold tracking-[0.3em] text-foreground uppercase transition-opacity hover:opacity-90"
+          >
+            Visit Our Shop
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+</Base>

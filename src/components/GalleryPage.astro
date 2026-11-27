@@ -1,0 +1,110 @@
+---
+import Base from "@/layouts/Base.astro";
+import Ornament from "@/components/ornaments.astro";
+import {
+  CATEGORIES,
+  categoryPath,
+  galleryItems,
+  type Category,
+} from "@/data/gallery";
+
+interface Props {
+  active: Category | null;
+}
+
+const { active } = Astro.props;
+
+const visibleCount = active
+  ? galleryItems.filter((item) => item.categories.includes(active)).length
+  : galleryItems.length;
+
+const pillClass =
+  "border border-accent px-4 py-1.5 text-sm uppercase tracking-[0.25em] transition-colors aria-pressed:bg-primary aria-pressed:text-primary-foreground aria-[pressed=false]:bg-background aria-[pressed=false]:text-muted-foreground aria-[pressed=false]:hover:text-foreground";
+---
+
+<Base
+  title="Gallery"
+  description="Browse our gallery of custom framing work — memorabilia, jerseys, diplomas, fine art, and more."
+>
+  <main class="container mx-auto px-4 py-16 lg:py-24">
+    <div class="mx-auto max-w-6xl space-y-12">
+      <div class="mx-auto max-w-2xl space-y-6 text-center">
+        <p class="text-sm uppercase tracking-[0.5em] text-accent-deep">
+          Our Work
+        </p>
+        <h1
+          class="font-heading text-4xl font-semibold tracking-[0.06em] sm:text-5xl"
+        >
+          GALLERY
+        </h1>
+        <div class="flex justify-center">
+          <Ornament name="chevron" class="h-3 w-32 text-accent" />
+        </div>
+        <p class="text-lg leading-relaxed text-muted-foreground">
+          See examples of our custom framing work. Filter by category to
+          explore memorabilia, jerseys, diplomas, and fine art.
+        </p>
+      </div>
+
+      <div class="space-y-8" data-gallery data-active={active ?? ""}>
+        <div class="flex flex-wrap items-center gap-2">
+          <a
+            href="/gallery"
+            data-filter=""
+            aria-pressed={active === null ? "true" : "false"}
+            class={pillClass}
+          >
+            All
+          </a>
+          {
+            CATEGORIES.map((category) => (
+              <a
+                href={categoryPath(category)}
+                data-filter={category}
+                aria-pressed={active === category ? "true" : "false"}
+                class={pillClass}
+              >
+                {category}
+              </a>
+            ))
+          }
+        </div>
+
+        <p
+          data-gallery-empty
+          hidden={visibleCount !== 0}
+          class="border border-dashed border-accent py-16 text-center text-sm text-muted-foreground"
+        >
+          No items in this category yet.
+        </p>
+
+        <div class="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
+          {
+            galleryItems.map((item) => (
+              <div
+                data-categories={item.categories.join("|")}
+                hidden={active !== null && !item.categories.includes(active)}
+                class="group relative aspect-square overflow-hidden border border-accent bg-muted p-1.5"
+              >
+                <div class="flex h-full items-center justify-center border border-accent/60 px-3 text-center text-sm text-muted-foreground">
+                  {item.title}
+                </div>
+              </div>
+            ))
+          }
+        </div>
+
+        <p
+          data-gallery-count
+          class="text-center text-sm tracking-[0.3em] text-muted-foreground uppercase"
+        >
+          {
+            `Showing ${visibleCount} ${visibleCount === 1 ? "example" : "examples"}${active ? ` in ${active}` : ""}`
+          }
+        </p>
+      </div>
+    </div>
+  </main>
+</Base>
+
+<script src="../scripts/gallery-filter.ts"></script>
