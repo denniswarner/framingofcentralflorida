@@ -34,7 +34,7 @@ Nectarine (5%) ███                               decorative warm accents
 
 ## Semantic role assignments
 
-| Token (shadcn / Tailwind) | Brand color | Used on |
+| Token (Tailwind) | Brand color | Used on |
 | --- | --- | --- |
 | `background` | Wheat | Page body, default surfaces |
 | `foreground` | Onyx | Body copy, default text |
@@ -133,4 +133,4 @@ If everything is "primary," nothing is. Resist the urge to make "View Our Work" 
 
 ## Tokens (CSS)
 
-The semantic mapping above is wired into `src/app/globals.css` as both brand-named tokens (`--color-onyx`, `--color-wheat`, `--color-oceanic`, `--color-nectarine`) and shadcn semantic tokens (`--background`, `--primary`, etc.). Components should consume the **semantic** tokens via Tailwind utilities (e.g. `bg-primary`, `text-foreground`) — never hard-code brand hex values inside components.
+The semantic mapping above is wired into `src/styles/global.css` as both brand-named tokens (`--color-onyx`, `--color-wheat`, `--color-oceanic`, `--color-nectarine`) and semantic tokens (`--background`, `--primary`, etc.). Components should consume the **semantic** tokens via Tailwind utilities (e.g. `bg-primary`, `text-foreground`) — never hard-code brand hex values inside components.

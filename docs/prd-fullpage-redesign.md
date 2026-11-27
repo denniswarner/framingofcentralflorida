@@ -33,9 +33,11 @@ Layer a fullPage.js-style snap-scrolling experience onto the homepage as a futur
 6. **Visit us** — address, hours, map, phone, directions.
 
 ## Technical approach
-- Library: `@fullpage/react-fullpage` (official React wrapper).
-- Next.js integration: client component (`"use client"`), loaded via `next/dynamic` with `ssr: false` to avoid hydration mismatch with `window`/DOM access.
-- Keep server-rendered SEO content (metadata, JSON-LD, headings) intact — either via the route's server component shell wrapping the dynamic client component, or a parallel SSR-friendly fallback.
+
+Written when the site ran on Next.js. It is now static Astro with no React, so revisit this section before acting on the PRD.
+
+- Library: vanilla `fullpage.js`, not the React wrapper, initialized from a `<script>` on the homepage.
+- Sections are server-rendered markup in `src/pages/index.astro`; fullPage.js takes them over on load. Headings, metadata, and JSON-LD stay in the HTML either way.
 - License: purchase the appropriate fullPage.js commercial license before shipping.
 
 ## Open questions

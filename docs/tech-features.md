@@ -10,10 +10,10 @@ Running list of optional/future technical features for the site. Each entry is a
 Embed a Google Maps view of the shop on the Contact page, matching the look of the "Let Us Frame It" reference site — Google's official place card (name, address, rating, share/directions buttons) plus a pinned interactive map.
 
 **Approach options:**
-- **A. Google Maps Embed API** *(recommended)* — `https://www.google.com/maps/embed/v1/place?key=...&q=...`. Free for the Embed API specifically (no quota/billing). Needs a Google Cloud project + API key restricted to the production domain. Key stored in `NEXT_PUBLIC_GOOGLE_MAPS_API_KEY`.
+- **A. Google Maps Embed API** *(recommended)* — `https://www.google.com/maps/embed/v1/place?key=...&q=...`. Free for the Embed API specifically (no quota/billing). Needs a Google Cloud project + API key restricted to the production domain. Key stored in `PUBLIC_GOOGLE_MAPS_API_KEY`.
 - **B. Plain Share → Embed iframe** — copy the `https://www.google.com/maps/embed?pb=...` URL from Google Maps' share dialog. Zero setup, opaque URL.
 
-**Where:** Contact page `/contact` (placeholder slot already exists in `src/app/contact/page.tsx`). Possible later expansion: small map preview in the footer, or as part of a fullPage.js "Visit us" section.
+**Where:** Contact page `/contact` (placeholder slot already exists in `src/pages/contact.astro`). Possible later expansion: small map preview in the footer, or as part of a fullPage.js "Visit us" section.
 
 **Open items:**
 - Decide A vs. B.

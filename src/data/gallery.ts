@@ -8,6 +8,20 @@ export const CATEGORIES = [
 
 export type Category = (typeof CATEGORIES)[number];
 
+/** Path segment for a category page, e.g. "Fine Art" → "fine-art". */
+export function categorySlug(category: Category): string {
+  return category
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/(^-|-$)/g, "");
+}
+
+/** Static path for a category. Query strings are not distinct files on a static host. */
+export function categoryPath(category: Category | null): string {
+  if (!category) return "/gallery";
+  return `/gallery/${categorySlug(category)}`;
+}
+
 export type GalleryItem = {
   id: string;
   title: string;

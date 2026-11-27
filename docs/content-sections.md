@@ -1,6 +1,6 @@
 # Content section names
 
-Canonical **display names** come from design comps, `docs/style-guide.md`, and `{/* … */}` section comments in `src/app`. Zone IDs use the **slug** (kebab-case).
+Canonical **display names** come from design comps, `docs/style-guide.md`, and the section comments in `src/pages`. Zone IDs use the **slug** (kebab-case).
 
 ```text
 {page-scope}.{section-slug}.{element}
@@ -21,13 +21,13 @@ Canonical **display names** come from design comps, `docs/style-guide.md`, and `
 |------|----------------|--------|
 | `header` | Header | layout |
 | `footer` | Footer | layout |
-| `meta` | Meta (SEO) | `layout.tsx` |
+| `meta` | Meta (SEO) | `Base.astro` |
 
 ---
 
 ## Home `/`
 
-| Order | Slug | Display name | TSX comment |
+| Order | Slug | Display name | Section comment |
 |-------|------|----------------|-------------|
 | 1 | `hero` | Hero | `{/* Hero — frame within frame */}` |
 | — | *(ornament)* | Section divider | `<DecoOrnament />` |
@@ -60,7 +60,7 @@ The public name is **Styles**. The route stays `/framing-styles`.
 | 1 | `page-intro` | Page intro | Eyebrow “Our Craft” + H1 STYLES |
 | 2 | `style-cards` | Style cards | Grid of framing types (4 cards) |
 
-**Inventory granularity:** Style cards are one grouped zone in the markdown/HTML inventory. Edit individual cards in `framingStyles` array in `framing-styles/page.tsx`. Optional drill-down slugs if needed later: `traditional-wood`, `ornate-gold`, `modern`, `shadow-box`.
+**Inventory granularity:** Style cards are one grouped zone in the markdown/HTML inventory. Edit individual cards in the `framingStyles` array in `src/pages/framing-styles.astro`. Optional drill-down slugs if needed later: `traditional-wood`, `ornate-gold`, `modern`, `shadow-box`.
 
 ---
 
